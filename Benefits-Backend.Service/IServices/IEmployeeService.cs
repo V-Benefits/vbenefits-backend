@@ -1,0 +1,10 @@
+﻿using Benefits_Backend.Domain.Entities;
+
+namespace Benefits_Backend.Service.IServices
+{
+    public interface IEmployeeService
+    {
+        Employee CreateEmployee(Employee employee);
+        Employee UpdateEmployee(Employee employee);
+    }
+}

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Benefits_Backend.Service</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Benefits-Backend.Domain\Benefits-Backend.Domain.csproj" />
+    <ProjectReference Include="..\Benefits-Backend.Repository\Benefits-Backend.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
