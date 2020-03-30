@@ -1,0 +1,54 @@
+﻿<Properties StartupConfiguration="{3DE8DD6B-22EA-42F7-A1CC-50C02AFDD742}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Benefits-Backend.API/Controllers/EmployeesController.cs">
+    <Files>
+      <File FileName="Benefits-Backend.API/Controllers/EmployeesController.cs" Line="36" Column="18" />
+      <File FileName="Benefits-Backend.Service/Services/EmployeeService.cs" Line="10" Column="49" />
+      <File FileName="Benefits-Backend.API/DTO/Employee/EmployeeForAddDTO.cs" Line="8" Column="35" />
+      <File FileName="Benefits-Backend.Domain/EntitiesMapping/EmployeeMap.cs" Line="1" Column="1" />
+      <File FileName="Benefits-Backend.API/Helpers/MappingProfile.cs" Line="20" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Benefits-Backend" expanded="True">
+            <Node name="Benefits-Backend.API" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="EmployeesController.cs" selected="True" />
+              </Node>
+              <Node name="DTO" expanded="True">
+                <Node name="Employee" expanded="True" />
+              </Node>
+              <Node name="Helpers" expanded="True" />
+            </Node>
+            <Node name="Benefits-Backend.Domain" expanded="True">
+              <Node name="Entities" expanded="True" />
+              <Node name="EntitiesMapping" expanded="True" />
+            </Node>
+            <Node name="Benefits-Backend.Repository" expanded="True">
+              <Node name="IRepositories" expanded="True" />
+              <Node name="Repositories" expanded="True" />
+              <Node name="UnitOFWork" expanded="True" />
+            </Node>
+            <Node name="Benefits-Backend.Service" expanded="True">
+              <Node name="IServices" expanded="True" />
+              <Node name="Services" expanded="True" />
+            </Node>
+            <Node name="Utilities" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Benefits-Backend.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>

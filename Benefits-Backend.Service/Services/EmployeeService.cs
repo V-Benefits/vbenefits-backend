@@ -13,7 +13,7 @@ namespace Benefits_Backend.Service.Services
 
         public EmployeeService(IEmployeeRepository employeeRepository)
         {
-           this.employeeRepository = employeeRepository;
+            this.employeeRepository = employeeRepository;
         }
 
         public Employee CreateEmployee(Employee employee)

@@ -12,10 +12,12 @@ namespace Benefits_Backend.API.Helpers
 
             CreateMap<EmployeeForAddDTO, Employee>();
             CreateMap<EmployeeForEditDTO, Employee>();
-          
+
             // Entity to API DTO
-         
-         
+
+            CreateMap<Employee, EmployeeForViewDTO>();
+
+
 
         }
 

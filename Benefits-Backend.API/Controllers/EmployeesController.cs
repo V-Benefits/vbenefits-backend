@@ -27,13 +27,15 @@ namespace Benefits_Backend.API.Controllers
             this.employeeService = employeeService;
         }
 
+        //[HttpPost("add")]
         [HttpPost]
         public async Task<IActionResult> Post(EmployeeForAddDTO model)
         {
             Employee employee = mapper.Map<Employee>(model);
             employeeService.CreateEmployee(employee);
+            EmployeeForViewDTO empResult = mapper.Map<EmployeeForViewDTO>(employee);
             await unitOfWork.Commit();
-            return Ok();
+            return Ok(empResult);
         }
     }
 }
