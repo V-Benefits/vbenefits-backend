@@ -38,6 +38,9 @@ namespace Benefits_Backend.API
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IEmployeeService, EmployeeService>();
+
+            services.AddScoped<IPhoneProgramRequestRepository, PhoneProgramRequestRepository>();
+            services.AddScoped<IPhoneProgramRequestService, PhoneProgramRequestService>();
             //services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

@@ -19,6 +19,8 @@ namespace Benefits_Backend.Domain.Context
             modelBuilder.Seed();
         }
         public DbSet<Employee> Employees { get; set; }
+
+        public DbSet<PhoneProgramRequest> PhoneProgramRequests { get; set; }
     }
 
 }
