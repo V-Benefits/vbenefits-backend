@@ -35,6 +35,7 @@ namespace Benefits_Backend.API.Controllers
             employeeService.CreateEmployee(employee);
             EmployeeForViewDTO empResult = mapper.Map<EmployeeForViewDTO>(employee);
             await unitOfWork.Commit();
+            empResult.Id= employee.Id;
             return Ok(empResult);
         }
     }
