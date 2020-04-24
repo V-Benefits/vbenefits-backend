@@ -21,6 +21,10 @@ namespace Benefits_Backend.Domain.Context
         public DbSet<Employee> Employees { get; set; }
 
         public DbSet<PhoneProgramRequest> PhoneProgramRequests { get; set; }
+
+        public DbSet<MetlifeData> metlifeData { get; set; }
+        public DbSet<HistoricalMetlifeData> historicalMetlifeData { get; set; }
+
     }
 
 }
