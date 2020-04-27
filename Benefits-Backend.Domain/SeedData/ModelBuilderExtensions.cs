@@ -44,7 +44,7 @@ namespace Benefits_Backend.Domain.SeedData
                         MobileNumber = "010133234588",
                         LandlineNumber = "00224456126",
                     }
-                ); ;
+                );
         }
     }
 }
