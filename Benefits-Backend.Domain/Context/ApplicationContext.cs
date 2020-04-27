@@ -15,12 +15,13 @@ namespace Benefits_Backend.Domain.Context
             base.OnModelCreating(modelBuilder);
 
             new EmployeeMap(modelBuilder.Entity<Employee>());
+            new PensionRequestMap(modelBuilder.Entity<PensionRequest>());
 
             modelBuilder.Seed();
         }
         public DbSet<Employee> Employees { get; set; }
-
         public DbSet<PhoneProgramRequest> PhoneProgramRequests { get; set; }
+        public DbSet<PensionRequest> PensionRequests { get; set; }
     }
 
 }

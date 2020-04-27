@@ -15,6 +15,7 @@ namespace Benefits_Backend.Domain.EntitiesMapping
             entityBuilder.Property(t => t.RequestBy).IsRequired();
             entityBuilder.Property(t => t.RequestFor).IsRequired();
             entityBuilder.Property(t => t.RequestDate).IsRequired().HasColumnType("date");
+            
         }
     }
 }

@@ -11,6 +11,9 @@ namespace Benefits_Backend.Domain.EntitiesMapping
             entityBuilder.HasKey(t => t.Id);
             entityBuilder.Property(t => t.StaffId).IsRequired();
             entityBuilder.Property(t => t.DateOfBirth).HasColumnType("date");
+
+            //entityBuilder.HasMany<PensionRequest>(p => p.PensionRequests)
+            //               .WithOne().HasForeignKey(con => con.ApprovedById);
         }
     }
 }
