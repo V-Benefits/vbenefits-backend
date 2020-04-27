@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Benefits_Backend.API.DTO.Employee;
+using Benefits_Backend.API.DTO.PensionRequest;
 using Benefits_Backend.API.DTO.PhoneProgramRequest;
 using Benefits_Backend.Domain.Entities;
 
@@ -20,6 +21,7 @@ namespace Benefits_Backend.API.Helpers
 
             CreateMap<PhoneProgramRequestForAddDto,PhoneProgramRequest>();
 
+            CreateMap<PensionRequestForAddDto, PensionRequest>();
 
         }
 
