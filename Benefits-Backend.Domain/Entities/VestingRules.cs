@@ -7,9 +7,13 @@ namespace Benefits_Backend.Domain.Entities
     public class VestingRules
     {
         public int Id { get; set; }
-        public string Band { get; set; }
-        public int EnrollmentAfterMonths { get; set; }
-        public DateTime EditedOn { get; set; }
 
+        public int VestingRulesNumber { get; private set; }
+
+        public DateTime FromYear { get; set; }
+
+        public DateTime ToYear { get; set; }
+
+        public decimal VestingPercentage { get; set; }
     }
 }
