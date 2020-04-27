@@ -13,14 +13,14 @@ namespace Benefits_Backend.Domain.EntitiesMapping
         public PensionRequestMap(EntityTypeBuilder<PensionRequest> entityBuilder)
         {
             entityBuilder.HasKey(t => t.Id);
-            entityBuilder.Property(t => t.WithdrawalAmmount).IsRequired().HasColumnType("decimal(18,4)"); ;
-            entityBuilder.Property(t => t.BeginingBalance).IsRequired().HasColumnType("decimal(18,4)"); ;
-            entityBuilder.Property(t => t.CurrentyearContribution).IsRequired().HasColumnType("decimal(18,4)"); ;
-            entityBuilder.Property(t => t.VestingPercent).IsRequired().HasColumnType("decimal(18,4)"); ;
-            entityBuilder.Property(t => t.LastRoundWithdrawal).IsRequired().HasColumnType("decimal(18,4)"); ;
-            entityBuilder.Property(t => t.ProratedNewContribution).IsRequired().HasColumnType("decimal(18,4)"); ;
-            entityBuilder.Property(t => t.CurrentAvailableBalance).IsRequired().HasColumnType("decimal(18,4)"); ;
-            entityBuilder.Property(t => t.MaxWithdrawalAmount).IsRequired().HasColumnType("decimal(18,4)"); ;
+            entityBuilder.Property(t => t.WithdrawalAmmount).IsRequired().HasColumnType("decimal(18,4)");
+            entityBuilder.Property(t => t.BeginingBalance).IsRequired().HasColumnType("decimal(18,4)");
+            entityBuilder.Property(t => t.CurrentyearContribution).IsRequired().HasColumnType("decimal(18,4)");
+            entityBuilder.Property(t => t.VestingPercent).IsRequired().HasColumnType("decimal(18,4)");
+            entityBuilder.Property(t => t.LastRoundWithdrawal).IsRequired().HasColumnType("decimal(18,4)");
+            entityBuilder.Property(t => t.ProratedNewContribution).IsRequired().HasColumnType("decimal(18,4)");
+            entityBuilder.Property(t => t.CurrentAvailableBalance).IsRequired().HasColumnType("decimal(18,4)");
+            entityBuilder.Property(t => t.MaxWithdrawalAmount).IsRequired().HasColumnType("decimal(18,4)"); 
             entityBuilder.Property(t => t.YearsOfService).IsRequired();
             entityBuilder.Property(t => t.RequestedOn).HasColumnType("date");
 

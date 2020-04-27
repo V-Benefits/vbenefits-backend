@@ -15,7 +15,7 @@ namespace Benefits_Backend.Domain.EntitiesMapping
             entityBuilder.Property(x => x.VestingRulesNumber).ValueGeneratedOnAdd();
             entityBuilder.Property(t => t.FromYear).IsRequired().HasColumnType("date");
             entityBuilder.Property(t => t.ToYear).IsRequired().HasColumnType("date");
-            entityBuilder.Property(t => t.VestingPercentage).IsRequired();
+            entityBuilder.Property(t => t.VestingPercentage).IsRequired().HasColumnType("decimal(18,4)"); ;
         }
     }
 }

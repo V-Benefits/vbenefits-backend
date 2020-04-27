@@ -21,21 +21,12 @@ namespace Benefits_Backend.Domain.Context
         }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<PhoneProgramRequest> PhoneProgramRequests { get; set; }
-
-        public DbSet<PhoneProgramRequest> PhoneProgramRequests { get; set; }
-
         public DbSet<VestingRules> VestingRules { get; set; }
-
         public DbSet<PensionEnrollmentRules> PensionEnrollmentRules { get; set; }
-
         public DbSet<PensionEnrollmentRulesHistory> PensionEnrollmentRulesHistories { get; set; }
-
         public DbSet<VestingRulesHistory> VestingRulesHistories { get; set; }
-
-
         public DbSet<MetlifeData> metlifeData { get; set; }
         public DbSet<HistoricalMetlifeData> historicalMetlifeData { get; set; }
-
         public DbSet<PensionRequest> PensionRequests { get; set; }
     }
 
