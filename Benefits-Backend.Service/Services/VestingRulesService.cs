@@ -9,11 +9,16 @@ namespace Benefits_Backend.Service.Services
 {
     public class VestingRulesService : IVestingRulesService
     {
-        private readonly IVestingRulesRepository vestingRulesRepository;
+        private readonly IVestingRulesRepository _vestingRulesRepository;
+
+        public VestingRulesService(IVestingRulesRepository vestingRulesRepository)
+        {
+            _vestingRulesRepository = vestingRulesRepository;
+        }
 
         public ICollection<VestingRules> GetVestingRules()
         {
-            return this.vestingRulesRepository.GetVestingRules();
+            return this._vestingRulesRepository.GetVestingRules();
         }
     }
 }

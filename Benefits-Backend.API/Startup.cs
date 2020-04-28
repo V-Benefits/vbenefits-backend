@@ -39,6 +39,10 @@ namespace Benefits_Backend.API
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IEmployeeService, EmployeeService>();
 
+            services.AddScoped<IVestingRulesService, VestingRulesService>();
+            services.AddScoped<IVestingRulesRepository, VestingRulesRepository>();
+
+
             services.AddScoped<IPhoneProgramRequestRepository, PhoneProgramRequestRepository>();
             services.AddScoped<IPhoneProgramRequestService, PhoneProgramRequestService>();
             //services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

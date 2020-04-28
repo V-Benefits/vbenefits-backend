@@ -19,20 +19,22 @@ namespace Benefits_Backend.API.Controllers
         private readonly IMapper mapper;
         private readonly IUnitOfWork unitOfWork;
         private readonly IEmployeeService employeeService;
-        private readonly IVestingRulesService vestingRulesService;
+        private readonly IVestingRulesService _vestingRulesService;
 
-        public EmployeesController(IMapper mapper, IUnitOfWork unitOfWork, IEmployeeService employeeService)
+        public EmployeesController(IMapper mapper, IUnitOfWork unitOfWork, IEmployeeService employeeService,
+            IVestingRulesService vestingRulesService)
         {
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
             this.employeeService = employeeService;
+            _vestingRulesService = vestingRulesService;
         }
 
         //[HttpPost("add")]
         [HttpPost]
         public async Task<IActionResult> Post(EmployeeForAddDTO model)
         {
-            var vesting = vestingRulesService.GetVestingRules();
+            var vesting = _vestingRulesService.GetVestingRules();
 
             Employee employee = mapper.Map<Employee>(model);
             employeeService.CreateEmployee(employee);
