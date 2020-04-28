@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Benefits_Backend.Domain.Migrations
 {
-    public partial class merg1 : Migration
+    public partial class mig1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -147,10 +147,9 @@ namespace Benefits_Backend.Domain.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    VestingRulesNumber = table.Column<int>(nullable: false),
-                    FromYear = table.Column<DateTime>(nullable: false),
-                    ToYear = table.Column<DateTime>(nullable: false),
-                    VestingPercentage = table.Column<decimal>(nullable: false)
+                    VestingRulesPercentage = table.Column<int>(nullable: false),
+                    FromYear = table.Column<int>(nullable: false),
+                    ToYear = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -272,12 +271,12 @@ namespace Benefits_Backend.Domain.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FromYearBefore = table.Column<DateTime>(nullable: false),
-                    ToYearBefore = table.Column<DateTime>(nullable: false),
-                    VestingPercentageBefore = table.Column<decimal>(nullable: false),
-                    FromYearAfter = table.Column<DateTime>(nullable: false),
-                    ToYearAfter = table.Column<DateTime>(nullable: false),
-                    VestingPercentageAfter = table.Column<decimal>(nullable: false),
+                    FromYearBefore = table.Column<int>(nullable: false),
+                    ToYearBefore = table.Column<int>(nullable: false),
+                    VestingPercentageBefore = table.Column<int>(nullable: false),
+                    FromYearAfter = table.Column<int>(nullable: false),
+                    ToYearAfter = table.Column<int>(nullable: false),
+                    VestingPercentageAfter = table.Column<int>(nullable: false),
                     UpdatedById = table.Column<int>(nullable: false),
                     UpdatedOn = table.Column<DateTime>(nullable: false)
                 },
