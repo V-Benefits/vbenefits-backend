@@ -28,6 +28,8 @@ namespace Benefits_Backend.Domain.Context
         public DbSet<MetlifeData> metlifeData { get; set; }
         public DbSet<HistoricalMetlifeData> historicalMetlifeData { get; set; }
         public DbSet<PensionRequest> PensionRequests { get; set; }
+        public DbSet<RoundDate> RoundDates { get; set; }
+
     }
 
 }
