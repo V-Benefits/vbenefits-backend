@@ -17,9 +17,13 @@ namespace Benefits_Backend.Repository.Repositories
         {
             this.context = context;
         }
-        public AppSetting GetAppSetting(string key)
+        public AppSetting GetAppSetting(string _key)
         {
-            return context.AppSettings.FirstOrDefault(u => u.Key == "MaxPercentWithdrawal");
+            if (_key != null)
+            {
+                return context.AppSettings.FirstOrDefault(u => u.Key == _key);
+            }
+            return null;
         }
     }
 }

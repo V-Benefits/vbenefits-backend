@@ -20,14 +20,16 @@ namespace Benefits_Backend.API.Controllers
         private readonly IUnitOfWork unitOfWork;
         private readonly IEmployeeService employeeService;
         private readonly IVestingRulesService _vestingRulesService;
+        private readonly IAppSettingService _appSettingService;
 
         public EmployeesController(IMapper mapper, IUnitOfWork unitOfWork, IEmployeeService employeeService,
-            IVestingRulesService vestingRulesService)
+            IVestingRulesService vestingRulesService, IAppSettingService appSettingService)
         {
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
             this.employeeService = employeeService;
             _vestingRulesService = vestingRulesService;
+            _appSettingService = appSettingService;
         }
 
         //[HttpPost("add")]
@@ -35,6 +37,9 @@ namespace Benefits_Backend.API.Controllers
         public async Task<IActionResult> Post(EmployeeForAddDTO model)
         {
             var vesting = _vestingRulesService.GetVestingRules();
+
+
+            var maxvalue = _appSettingService.GetPensionMaxPercent();
 
             Employee employee = mapper.Map<Employee>(model);
             employeeService.CreateEmployee(employee);
