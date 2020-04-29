@@ -15,7 +15,7 @@ namespace Benefits_Backend.API.DTO.PensionRequest
         public decimal ProratedNewContribution { get; set; }
         public decimal CurrentAvailableBalance { get; set; }
         public decimal MaxWithdrawalAmount { get; set; }
-        public string YearsOfService { get; set; }
+        public decimal YearsOfService { get; set; }
 
         public int RequestedById { get; set; }
         public DateTime RequestedOn { get; set; }
