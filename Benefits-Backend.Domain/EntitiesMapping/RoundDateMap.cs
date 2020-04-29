@@ -15,7 +15,7 @@ namespace Benefits_Backend.Domain.EntitiesMapping
             entityBuilder.Property(t => t.RoundName).IsRequired();
             entityBuilder.Property(t => t.StartDate).HasColumnType("date");
             entityBuilder.Property(t => t.EndDate).HasColumnType("date");
-            entityBuilder.Property(t => t.Year).IsRequired();
+            entityBuilder.Property(t => t.IsActive).IsRequired();
 
         }
     }

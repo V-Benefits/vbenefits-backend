@@ -55,6 +55,9 @@ namespace Benefits_Backend.API
             services.AddScoped<IPensionRequestRepository, PensionRequestRepository>();
             services.AddScoped<IPensionRequestService, PensionRequestService>();
 
+            services.AddScoped<IRoundDatesRepository, RoundDatesRepository>();
+            services.AddScoped<IRoundDatesService, RoundDatesService>();
+
 
             //services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
