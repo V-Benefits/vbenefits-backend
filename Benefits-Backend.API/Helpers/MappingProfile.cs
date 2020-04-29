@@ -18,7 +18,6 @@ namespace Benefits_Backend.API.Helpers
             // Entity to API DTO
 
             CreateMap<Employee, EmployeeForViewDTO>();
-
             CreateMap<PhoneProgramRequestForAddDto,PhoneProgramRequest>();
 
             CreateMap<PensionRequestForAddDto, PensionRequest>();

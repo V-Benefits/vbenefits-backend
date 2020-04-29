@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Benefits_Backend.Domain.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200427091633_merg1")]
-    partial class merg1
+    [Migration("20200427143457_mig-1")]
+    partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -498,16 +498,13 @@ namespace Benefits_Backend.Domain.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("FromYear")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("FromYear")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ToYear")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("ToYear")
+                        .HasColumnType("int");
 
-                    b.Property<decimal>("VestingPercentage")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("VestingRulesNumber")
+                    b.Property<int>("VestingRulesPercentage")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -522,17 +519,17 @@ namespace Benefits_Backend.Domain.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("FromYearAfter")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("FromYearAfter")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("FromYearBefore")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("FromYearBefore")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ToYearAfter")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("ToYearAfter")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ToYearBefore")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("ToYearBefore")
+                        .HasColumnType("int");
 
                     b.Property<int>("UpdatedById")
                         .HasColumnType("int");
@@ -540,11 +537,11 @@ namespace Benefits_Backend.Domain.Migrations
                     b.Property<DateTime>("UpdatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("VestingPercentageAfter")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("VestingPercentageAfter")
+                        .HasColumnType("int");
 
-                    b.Property<decimal>("VestingPercentageBefore")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("VestingPercentageBefore")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

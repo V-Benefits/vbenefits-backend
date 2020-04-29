@@ -75,6 +75,15 @@ namespace Benefits_Backend.Domain.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppSetting");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Key = "MaxPercentWithdrawal",
+                            Name = "Max Percent Withdrawal",
+                            Value = "65"
+                        });
                 });
 
             modelBuilder.Entity("Benefits_Backend.Domain.Entities.Employee", b =>
@@ -372,6 +381,38 @@ namespace Benefits_Backend.Domain.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PensionEnrollmentRules");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Band = "S",
+                            NumberOfMonthsToEnrollment = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Band = "E",
+                            NumberOfMonthsToEnrollment = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Band = "F",
+                            NumberOfMonthsToEnrollment = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Band = "G",
+                            NumberOfMonthsToEnrollment = 24
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Band = "H",
+                            NumberOfMonthsToEnrollment = 24
+                        });
                 });
 
             modelBuilder.Entity("Benefits_Backend.Domain.Entities.PensionEnrollmentRulesHistory", b =>
@@ -496,21 +537,48 @@ namespace Benefits_Backend.Domain.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("FromYear")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("FromYear")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ToYear")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("ToYear")
+                        .HasColumnType("int");
 
-                    b.Property<decimal>("VestingPercentage")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("VestingRulesNumber")
+                    b.Property<int>("VestingRulesPercentage")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("VestingRules");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FromYear = 2,
+                            ToYear = 3,
+                            VestingRulesPercentage = 50
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FromYear = 3,
+                            ToYear = 4,
+                            VestingRulesPercentage = 65
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FromYear = 4,
+                            ToYear = 5,
+                            VestingRulesPercentage = 85
+                        },
+                        new
+                        {
+                            Id = 4,
+                            FromYear = 5,
+                            ToYear = 0,
+                            VestingRulesPercentage = 100
+                        });
                 });
 
             modelBuilder.Entity("Benefits_Backend.Domain.Entities.VestingRulesHistory", b =>
@@ -520,17 +588,17 @@ namespace Benefits_Backend.Domain.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("FromYearAfter")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("FromYearAfter")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("FromYearBefore")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("FromYearBefore")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ToYearAfter")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("ToYearAfter")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("ToYearBefore")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("ToYearBefore")
+                        .HasColumnType("int");
 
                     b.Property<int>("UpdatedById")
                         .HasColumnType("int");
@@ -538,11 +606,11 @@ namespace Benefits_Backend.Domain.Migrations
                     b.Property<DateTime>("UpdatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("VestingPercentageAfter")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("VestingPercentageAfter")
+                        .HasColumnType("int");
 
-                    b.Property<decimal>("VestingPercentageBefore")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("VestingPercentageBefore")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

@@ -45,6 +45,78 @@ namespace Benefits_Backend.Domain.SeedData
                         LandlineNumber = "00224456126",
                     }
                 );
+
+            modelBuilder.Entity<VestingRules>().HasData(
+                new VestingRules
+                {
+                    Id = 1,
+                    FromYear = 2, 
+                    ToYear = 3,
+                    VestingRulesPercentage = 50,
+                },
+                new VestingRules
+                {
+                    Id = 2,
+                    FromYear = 3,
+                    ToYear = 4,
+                    VestingRulesPercentage = 65,
+                },
+                new VestingRules
+                {
+                    Id = 3,
+                    FromYear = 4,
+                    ToYear = 5,
+                    VestingRulesPercentage = 85,
+                },
+                new VestingRules
+                {
+                    Id = 4,
+                    FromYear = 5,
+                    ToYear = 0,
+                    VestingRulesPercentage = 100,
+                });
+
+            modelBuilder.Entity<PensionEnrollmentRules>().HasData(
+                new PensionEnrollmentRules
+                { 
+                    Id = 1,
+                    Band = "S",
+                    NumberOfMonthsToEnrollment = 0
+                },
+                new PensionEnrollmentRules
+                {
+                    Id = 2,
+                    Band = "E",
+                    NumberOfMonthsToEnrollment = 3
+                },
+                new PensionEnrollmentRules
+                {
+                    Id = 3,
+                    Band = "F",
+                    NumberOfMonthsToEnrollment = 3
+                },
+                new PensionEnrollmentRules
+                {
+                    Id = 4,
+                    Band = "G",
+                    NumberOfMonthsToEnrollment = 24
+                },
+                new PensionEnrollmentRules
+                {
+                    Id = 5,
+                    Band = "H",
+                    NumberOfMonthsToEnrollment = 24
+                }
+            );
+
+            modelBuilder.Entity<AppSetting>().HasData(
+                new AppSetting
+                {
+                    Id = 1,
+                    Name = "Max Percent Withdrawal",
+                    Key = "MaxPercentWithdrawal",
+                    Value = "65"
+                });
         }
     }
 }

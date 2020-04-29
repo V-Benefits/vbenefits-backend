@@ -12,12 +12,12 @@ namespace Benefits_Backend.Domain.EntitiesMapping
         public VestingRulesHistoryMap(EntityTypeBuilder<VestingRulesHistory> entityBuilder)
         {
             entityBuilder.HasKey(p => p.Id);
-            entityBuilder.Property(t => t.FromYearBefore).IsRequired().HasColumnType("date");
-            entityBuilder.Property(t => t.ToYearBefore).IsRequired().HasColumnType("date");
-            entityBuilder.Property(t => t.VestingPercentageBefore).IsRequired().HasColumnType("decimal(18,4)"); ; ;
-            entityBuilder.Property(t => t.FromYearAfter).IsRequired().HasColumnType("date");
-            entityBuilder.Property(t => t.ToYearAfter).IsRequired().HasColumnType("date");
-            entityBuilder.Property(t => t.VestingPercentageAfter).IsRequired().HasColumnType("decimal(18,4)");
+            entityBuilder.Property(t => t.FromYearBefore).IsRequired();
+            entityBuilder.Property(t => t.ToYearBefore).IsRequired();
+            entityBuilder.Property(t => t.VestingPercentageBefore).IsRequired();
+            entityBuilder.Property(t => t.FromYearAfter).IsRequired();
+            entityBuilder.Property(t => t.ToYearAfter).IsRequired();
+            entityBuilder.Property(t => t.VestingPercentageAfter).IsRequired();
             entityBuilder.Property(t => t.UpdatedBy).IsRequired();
             entityBuilder.Property(t => t.UpdatedOn).IsRequired();
         }

@@ -8,12 +8,10 @@ namespace Benefits_Backend.Domain.Entities
     {
         public int Id { get; set; }
 
-        public int VestingRulesNumber { get; private set; }
+        public int VestingRulesPercentage { get;  set; }
 
-        public DateTime FromYear { get; set; }
+        public int FromYear { get; set; }
 
-        public DateTime ToYear { get; set; }
-
-        public decimal VestingPercentage { get; set; }
+        public int ToYear { get; set; }
     }
 }

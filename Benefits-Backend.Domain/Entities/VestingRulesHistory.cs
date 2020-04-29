@@ -8,17 +8,17 @@ namespace Benefits_Backend.Domain.Entities
     {
         public int Id { get; set; }
 
-        public DateTime FromYearBefore { get; set; }
+        public int FromYearBefore { get; set; }
 
-        public DateTime ToYearBefore { get; set; }
+        public int ToYearBefore { get; set; }
 
-        public decimal VestingPercentageBefore { get; set; }
+        public int VestingPercentageBefore { get; set; }
 
-        public DateTime FromYearAfter { get; set; }
+        public int FromYearAfter { get; set; }
 
-        public DateTime ToYearAfter { get; set; }
+        public int ToYearAfter { get; set; }
 
-        public decimal VestingPercentageAfter { get; set; }
+        public int VestingPercentageAfter { get; set; }
 
         public int UpdatedById { get; set; }
 

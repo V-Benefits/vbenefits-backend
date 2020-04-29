@@ -12,10 +12,8 @@ namespace Benefits_Backend.Domain.EntitiesMapping
         public VestingRulesMap(EntityTypeBuilder<VestingRules> entityBuilder)
         {
             entityBuilder.HasKey(p => p.Id);
-            entityBuilder.Property(x => x.VestingRulesNumber).ValueGeneratedOnAdd();
-            entityBuilder.Property(t => t.FromYear).IsRequired().HasColumnType("date");
-            entityBuilder.Property(t => t.ToYear).IsRequired().HasColumnType("date");
-            entityBuilder.Property(t => t.VestingPercentage).IsRequired().HasColumnType("decimal(18,4)"); ;
+            entityBuilder.Property(t => t.FromYear).IsRequired();
+            entityBuilder.Property(t => t.ToYear).IsRequired();
         }
     }
 }
