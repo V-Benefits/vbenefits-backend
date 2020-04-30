@@ -20,21 +20,40 @@ namespace Benefits_Backend.API.Controllers
         private readonly IUnitOfWork unitOfWork;
         private readonly IPensionRequestService pensionRequestService;
 
+        public List<SuccessFactor> successFact = new List<SuccessFactor>();
+
+
+
+
 
         public PensionRequestController(IMapper mapper, IUnitOfWork unitOfWork, IPensionRequestService pensionRequestService)
         {
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
             this.pensionRequestService = pensionRequestService;
+
+            successFact.Add(
+                new SuccessFactor
+                {
+                    StaffId = 1,
+                    Name = "Ahmed",
+                    Band = "G",
+                    CostCenter = "EG0200G078",
+                    Tenure = 1.7,
+                    SubBand = "G2",
+                    HiringDate = new DateTime(2018, 06, 20)
+                });
         }
 
         [HttpPost]
         public async Task<IActionResult> Post(PensionRequestForAddDto model)
         {
-            PensionRequest pensionRequest  = mapper.Map<PensionRequest>(model);
+            PensionRequest pensionRequest = mapper.Map<PensionRequest>(model);
             pensionRequestService.CreatePensionRequest(pensionRequest);
             await unitOfWork.Commit();
             return Ok();
         }
+
+
     }
 }
