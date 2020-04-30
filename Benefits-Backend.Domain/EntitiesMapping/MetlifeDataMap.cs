@@ -12,8 +12,8 @@ namespace Benefits_Backend.Domain.EntitiesMapping
         public MetlifeDataMap(EntityTypeBuilder<MetlifeData> entityBuilder)
         {
             entityBuilder.HasKey(t => t.Id);
-            entityBuilder.Property(t => t.StaffId).IsRequired();
-            entityBuilder.Property(t => t.HiringDate).HasColumnType("date");
+            //entityBuilder.Property(t => t.StaffId).IsRequired();
+            //entityBuilder.Property(t => t.HiringDate).HasColumnType("date");
         }
     }
 }
