@@ -117,6 +117,35 @@ namespace Benefits_Backend.Domain.SeedData
                     Value = "65"
                 });
 
+
+
+            modelBuilder.Entity<MetlifeData>().HasData(
+            new MetlifeData
+            {
+                Id = 1,
+                Name = "MAHMOUD, ASHRAF",
+                CERT = 2,
+                OldBalance = 52793.4,
+                Contribution = 85299.64,
+                Income = 4233.757,
+                Withdrawals = 0,
+                NewBalance = 142326.8
+            },
+                     new MetlifeData
+                     {
+                         Id = 2,
+                         Name = "Abdallah Fekry Kenawy, Abdullah Mahmoud",
+                         CERT = 3,
+                         OldBalance = 25658.55,
+                         Contribution = 15439.77,
+                         Income = 1277.134,
+                         Withdrawals = 9175,
+                         NewBalance = 33200.45
+                     }
+            );
+
+
+
         }
     }
 }
