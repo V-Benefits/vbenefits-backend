@@ -8,7 +8,7 @@ namespace Benefits_Backend.Repository.IRepositories
     public interface IMetlifeDataRepository
     {
         //TO BE CHANGED TO int ID 
-        MetlifeData GetMetlifeDataForUser(string name);
+        MetlifeData GetMetlifeDataForUser(int cert);
 
     }
 }

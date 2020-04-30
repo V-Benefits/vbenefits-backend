@@ -8,16 +8,16 @@ using System.Text;
 
 namespace Benefits_Backend.Repository.Repositories
 {
-    public class MetlifeDataRepositor : IMetlifeDataRepository
+    public class MetlifeDataRepository : IMetlifeDataRepository
     {
         private readonly ApplicationContext context;
-        public MetlifeDataRepositor(ApplicationContext context)
+        public MetlifeDataRepository(ApplicationContext context)
         {
             this.context = context;
         }
-        public MetlifeData GetMetlifeDataForUser(string name)
+        public MetlifeData GetMetlifeDataForUser(int cert)
         {
-            return context.metlifeData.FirstOrDefault(u => u.Name == name);
+            return context.metlifeData.FirstOrDefault(u => u.CERT == cert);
         }
     }
 }

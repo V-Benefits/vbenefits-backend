@@ -55,7 +55,7 @@ namespace Benefits_Backend.API
             services.AddScoped<IPensionRequestRepository, PensionRequestRepository>();
             services.AddScoped<IPensionRequestService, PensionRequestService>();
 
-            services.AddScoped<IMetlifeDataRepository, MetlifeDataRepositor>();
+            services.AddScoped<IMetlifeDataRepository, MetlifeDataRepository>();
 
 
             //services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
