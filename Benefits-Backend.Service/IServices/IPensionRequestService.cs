@@ -8,6 +8,6 @@ namespace Benefits_Backend.Service.IServices
    public interface IPensionRequestService
     {
         PensionRequest CreatePensionRequest(PensionRequest pensionRequest);
-        PensionRequest CalculatePensionFormula(int userId);
+        PensionRequest CalculatePensionFormula(int userId, SuccessFactor successFactorData);
     }
 }

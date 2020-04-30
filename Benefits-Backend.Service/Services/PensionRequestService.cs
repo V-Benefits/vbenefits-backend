@@ -1,4 +1,5 @@
-﻿using Benefits_Backend.Domain.Entities;
+﻿using Benefits_Backend.API.Controllers;
+using Benefits_Backend.Domain.Entities;
 using Benefits_Backend.Repository.IRepositories;
 using Benefits_Backend.Service.IServices;
 using System;
@@ -23,9 +24,16 @@ namespace Benefits_Backend.Service.Services
             return pensionRequest;
         }
 
-        public PensionRequest CalculatePensionFormula(int userId)
+        public PensionRequest CalculatePensionFormula(int userStaffId , SuccessFactor successFactorData)
         {
             PensionRequest pension = new PensionRequest();
+            MetlifeData metlifeData =  metlifeDataRepository.GetMetlifeDataForUser(userStaffId);
+            pension.Id = userStaffId;
+            pension.BeginingBalance = metlifeData.OldBalance ;
+            pension.CurrentyearContribution = metlifeData.Contribution ;
+            pension.CurrentAvailableBalance = metlifeData.NewBalance;
+            pension.WithdrawalAmmount = metlifeData.Withdrawals;
+               
             return pension;
         }
     }

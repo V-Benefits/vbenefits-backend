@@ -10,11 +10,11 @@ namespace Benefits_Backend.Domain.Entities
         public string Name { get; set; }
         #region Metlife data
         public int CERT { get; set; }
-        public double OldBalance { get; set; }
-        public double Contribution { get; set; }
-        public double Income { get; set; }
-        public double Withdrawals { get; set; }
-        public double NewBalance { get; set; }
+        public decimal OldBalance { get; set; }
+        public decimal Contribution { get; set; }
+        public decimal Income { get; set; }
+        public decimal Withdrawals { get; set; }
+        public decimal NewBalance { get; set; }
         #endregion
 
         //public int StaffId { get; set; }
