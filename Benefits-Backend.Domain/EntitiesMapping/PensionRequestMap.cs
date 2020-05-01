@@ -17,6 +17,7 @@ namespace Benefits_Backend.Domain.EntitiesMapping
             entityBuilder.Property(t => t.BeginingBalance).IsRequired().HasColumnType("decimal(18,4)");
             entityBuilder.Property(t => t.CurrentyearContribution).IsRequired().HasColumnType("decimal(18,4)");
             entityBuilder.Property(t => t.VestingPercent).IsRequired().HasColumnType("decimal(18,4)");
+            entityBuilder.Property(t => t.VestedBalance).IsRequired().HasColumnType("decimal(18,4)");
             entityBuilder.Property(t => t.LastRoundWithdrawal).IsRequired().HasColumnType("decimal(18,4)");
             entityBuilder.Property(t => t.ProratedNewContribution).IsRequired().HasColumnType("decimal(18,4)");
             entityBuilder.Property(t => t.CurrentAvailableBalance).IsRequired().HasColumnType("decimal(18,4)");
