@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Benefits_Backend.API.Controllers
+namespace Benefits_Backend.Domain.Entities
 {
     public class SuccessFactor
     {

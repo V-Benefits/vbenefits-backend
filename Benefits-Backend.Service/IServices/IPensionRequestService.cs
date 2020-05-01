@@ -9,5 +9,6 @@ namespace Benefits_Backend.Service.IServices
     {
         PensionRequest CreatePensionRequest(PensionRequest pensionRequest);
         PensionRequest CalculatePensionFormula(int userId, SuccessFactor successFactorData);
+        bool IsWithdraw(int userStaffId, SuccessFactor successFactorData);
     }
 }
