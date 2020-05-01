@@ -22,10 +22,6 @@ namespace Benefits_Backend.API.Controllers
 
         public List<SuccessFactor> successFact = new List<SuccessFactor>();
 
-
-
-
-
         public PensionRequestController(IMapper mapper, IUnitOfWork unitOfWork, IPensionRequestService pensionRequestService)
         {
             this.mapper = mapper;
@@ -54,6 +50,12 @@ namespace Benefits_Backend.API.Controllers
             return Ok();
         }
 
+        [HttpGet]
+        public IActionResult Get([FromQuery] int staffId)
+        {
+            var successFactorObject = successFact.Where(sf => sf.StaffId == staffId).FirstOrDefault();
+            return Ok(pensionRequestService.CalculatePensionFormula(staffId, successFactorObject));
+        }
 
-    }
+        }
 }
