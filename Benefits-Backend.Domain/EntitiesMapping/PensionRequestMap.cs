@@ -22,7 +22,6 @@ namespace Benefits_Backend.Domain.EntitiesMapping
             entityBuilder.Property(t => t.ProratedNewContribution).IsRequired().HasColumnType("decimal(18,4)");
             entityBuilder.Property(t => t.CurrentAvailableBalance).IsRequired().HasColumnType("decimal(18,4)");
             entityBuilder.Property(t => t.MaxWithdrawalAmount).IsRequired().HasColumnType("decimal(18,4)"); 
-            entityBuilder.Property(t => t.YearsOfService).IsRequired();
             entityBuilder.Property(t => t.RequestedOn).HasColumnType("date");
             entityBuilder.Property(t => t.Income).IsRequired().HasColumnType("decimal(18,4)");
 
