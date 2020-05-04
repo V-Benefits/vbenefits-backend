@@ -58,7 +58,8 @@ namespace Benefits_Backend.Service.Services
                 pension.isEligible = false;
                // return pension;
             }
-            pension = FillPensionObject(userStaffId ,successFactorData);
+
+            pension = FillPensionObject(userStaffId ,successFactorData , pension);
             return pension;
         }
 
@@ -133,10 +134,10 @@ namespace Benefits_Backend.Service.Services
             return 0;
         }
 
-        public PensionRequest FillPensionObject(int userStaffId, SuccessFactor successFactorData)
+        public PensionRequest FillPensionObject(int userStaffId, SuccessFactor successFactorData, PensionRequest pension)
         {
             // pension.Id = userStaffId;
-            PensionRequest pension = new PensionRequest();
+          //  PensionRequest pension = new PensionRequest();
             MetlifeData metlifeData = metlifeDataRepository.GetMetlifeDataForUser(userStaffId);
 
             // metlife data

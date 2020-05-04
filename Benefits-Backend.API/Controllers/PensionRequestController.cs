@@ -35,7 +35,7 @@ namespace Benefits_Backend.API.Controllers
                     Name = "Ahmed",
                     Band = "G",
                     CostCenter = "EG0200G078",
-                    Tenure = 1.7,
+                    Tenure = 5.5,
                     SubBand = "G2",
                     HiringDate = new DateTime(2018, 06, 20)
                 });
@@ -54,7 +54,9 @@ namespace Benefits_Backend.API.Controllers
         public IActionResult Get([FromQuery] int staffId)
         {
             var successFactorObject = successFact.Where(sf => sf.StaffId == staffId).FirstOrDefault();
-            return Ok(pensionRequestService.CalculatePensionFormula(staffId, successFactorObject));
+            var pensionRequest = pensionRequestService.CalculatePensionFormula(staffId, successFactorObject);
+
+            return Ok( pensionRequest);
         }
 
         }
