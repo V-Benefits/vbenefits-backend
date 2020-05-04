@@ -7,6 +7,7 @@ namespace Benefits_Backend.Domain.Entities
 {
     public class SuccessFactor
     {
+        public int Id { get; set; }
         public int StaffId { get; set; }
         public string Name { get; set; }
         public string Band { get; set; }

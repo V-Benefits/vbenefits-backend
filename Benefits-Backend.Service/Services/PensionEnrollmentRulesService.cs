@@ -9,11 +9,15 @@ namespace Benefits_Backend.Service.Services
 {
     public class PensionEnrollmentRulesService : IPensionEnrollmentRulesService
     {
-        private readonly IPensionEnrollmentRulesRepository enrollmentRulesRepository;
+        private readonly IPensionEnrollmentRulesRepository _enrollmentRulesRepository;
 
+        public PensionEnrollmentRulesService(IPensionEnrollmentRulesRepository enrollmentRulesRepository)
+        {
+            _enrollmentRulesRepository = enrollmentRulesRepository;
+        }
         public ICollection<PensionEnrollmentRules> GetEnrollmentRules()
         {
-            return this.enrollmentRulesRepository.GetEnrollmentRules();
+            return this._enrollmentRulesRepository.GetEnrollmentRules();
         }
     }
 }

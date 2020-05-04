@@ -49,14 +49,14 @@ namespace Benefits_Backend.Service.Services
             if (this.IsWithdraw(userStaffId))
             {
                 pension.isEligible = false;
-                return pension;
+             //   return pension;
             } 
 
           pension.VestingPercent = GetVestingPercent(successFactorData.Band, successFactorData.Tenure);
             if (pension.VestingPercent == -1)
             {
                 pension.isEligible = false;
-                return pension;
+               // return pension;
             }
             pension = FillPensionObject(userStaffId ,successFactorData);
             return pension;

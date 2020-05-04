@@ -29,6 +29,8 @@ namespace Benefits_Backend.Domain.Context
         public DbSet<HistoricalMetlifeData> historicalMetlifeData { get; set; }
         public DbSet<PensionRequest> PensionRequests { get; set; }
         public DbSet<AppSetting> AppSettings { get; set; }
+        public DbSet<SuccessFactor> SuccessFactor { get; set; }
+
     }
 
 }
