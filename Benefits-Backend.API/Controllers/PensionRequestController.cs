@@ -35,10 +35,36 @@ namespace Benefits_Backend.API.Controllers
                     Name = "Ahmed",
                     Band = "G",
                     CostCenter = "EG0200G078",
-                    Tenure = 5.5,
+                    Tenure = 1.7,
                     SubBand = "G2",
-                    HiringDate = new DateTime(2018, 06, 20)
+                    HiringDate = new DateTime(2020, 06, 18)
                 });
+
+            successFact.Add(
+            new SuccessFactor
+            {
+                StaffId = 2,
+                Name = "Mona",
+                Band = "F",
+                CostCenter = "EG0200G137",
+                Tenure = 19.8,
+                SubBand = "F1",
+                HiringDate = new DateTime(2020, 06, 04)
+            });
+
+            successFact.Add(
+                new SuccessFactor
+                {
+                    StaffId = 3,
+                    Name = "Kareem",
+                    Band = "G",
+                    CostCenter = "EG0200G087",
+                    Tenure = 4.5,
+                    SubBand = "G2",
+                    HiringDate = new DateTime(2015, 09, 15)
+                });
+
+
         }
 
         [HttpPost]
@@ -56,8 +82,8 @@ namespace Benefits_Backend.API.Controllers
             var successFactorObject = successFact.Where(sf => sf.StaffId == staffId).FirstOrDefault();
             var pensionRequest = pensionRequestService.CalculatePensionFormula(staffId, successFactorObject);
 
-            return Ok( pensionRequest);
+            return Ok(pensionRequest);
         }
 
-        }
+    }
 }
