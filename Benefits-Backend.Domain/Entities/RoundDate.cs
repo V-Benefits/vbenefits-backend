@@ -6,11 +6,15 @@ namespace Benefits_Backend.Domain.Entities
 {
    public class RoundDate
     {
+        public RoundDate()
+        {
+            this.IsActive = true;
+        }
         public int Id { get; set; }
         public string RoundName { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int Year { get; set; }
+        public bool IsActive { get; set; }
 
     }
 }
