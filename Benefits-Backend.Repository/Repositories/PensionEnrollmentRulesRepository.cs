@@ -10,10 +10,15 @@ namespace Benefits_Backend.Repository.Repositories
 {
     public class PensionEnrollmentRulesRepository : IPensionEnrollmentRulesRepository
     {
-        private readonly ApplicationContext context;
+        private readonly ApplicationContext _context;
+
+        public PensionEnrollmentRulesRepository(ApplicationContext context)
+        {
+            _context = context;
+        }
         public ICollection<PensionEnrollmentRules> GetEnrollmentRules()
         {
-            return context.PensionEnrollmentRules.ToList();
+            return _context.PensionEnrollmentRules.ToList();
         }
     }
 }

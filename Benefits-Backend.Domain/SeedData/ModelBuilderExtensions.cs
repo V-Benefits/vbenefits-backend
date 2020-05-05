@@ -50,7 +50,7 @@ namespace Benefits_Backend.Domain.SeedData
                 new VestingRules
                 {
                     Id = 1,
-                    FromYear = 2, 
+                    FromYear = 2,
                     ToYear = 3,
                     VestingRulesPercentage = 50,
                 },
@@ -78,7 +78,7 @@ namespace Benefits_Backend.Domain.SeedData
 
             modelBuilder.Entity<PensionEnrollmentRules>().HasData(
                 new PensionEnrollmentRules
-                { 
+                {
                     Id = 1,
                     Band = "S",
                     NumberOfMonthsToEnrollment = 0
@@ -117,6 +117,33 @@ namespace Benefits_Backend.Domain.SeedData
                     Key = "MaxPercentWithdrawal",
                     Value = "65"
                 });
+
+
+
+            modelBuilder.Entity<MetlifeData>().HasData(
+                new MetlifeData
+                {
+                    Id = 1,
+                    Name = "MAHMOUD, ASHRAF",
+                    CERT = 2,
+                    OldBalance = 52793.4m,
+                    Contribution = 85299.64m,
+                    Income = 4233.757m,
+                    Withdrawals = 0,
+                    NewBalance = 142326.8m
+                },
+                new MetlifeData
+                {
+                    Id = 2,
+                    Name = "Abdallah Fekry Kenawy, Abdullah Mahmoud",
+                    CERT = 3,
+                    OldBalance = 25658.55m,
+                    Contribution = 15439.77m,
+                    Income = 1277.134m,
+                    Withdrawals = 9175,
+                    NewBalance = 33200.45m
+                }
+            );
         }
     }
 }

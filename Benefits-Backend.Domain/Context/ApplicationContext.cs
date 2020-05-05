@@ -30,6 +30,7 @@ namespace Benefits_Backend.Domain.Context
         public DbSet<PensionRequest> PensionRequests { get; set; }
         public DbSet<AppSetting> AppSettings { get; set; }
         public DbSet<RoundDate> RoundDates { get; set; }
+        public DbSet<SuccessFactor> SuccessFactor { get; set; }
     }
 
 }

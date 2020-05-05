@@ -4,14 +4,16 @@ using Benefits_Backend.Domain.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Benefits_Backend.Domain.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20200430215513_mig-5")]
+    partial class mig5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -429,9 +431,6 @@ namespace Benefits_Backend.Domain.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool>("isApproved")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("isEligible")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");

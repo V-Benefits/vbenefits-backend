@@ -12,9 +12,9 @@ namespace Benefits_Backend.Domain.EntitiesMapping
         public HistoricalMetlifeDataMap(EntityTypeBuilder<HistoricalMetlifeData> entityBuilder)
         {
             entityBuilder.HasKey(t => t.Id);
-            entityBuilder.Property(t => t.StaffId).IsRequired();
-            entityBuilder.Property(t => t.HiringDate).HasColumnType("date");
-            entityBuilder.Property(t => t.UpdatedHiringDate).HasColumnType("date");
+            //entityBuilder.Property(t => t.StaffId).IsRequired();
+            //entityBuilder.Property(t => t.HiringDate).HasColumnType("date");
+            //entityBuilder.Property(t => t.UpdatedHiringDate).HasColumnType("date");
         }
     }
 }
