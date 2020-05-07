@@ -125,7 +125,7 @@ namespace Benefits_Backend.Domain.SeedData
                 {
                     Id = 1,
                     Name = "MAHMOUD, ASHRAF",
-                    CERT = 2,
+                    CERT = 20,
                     OldBalance = 52793.4m,
                     Contribution = 85299.64m,
                     Income = 4233.757m,
@@ -136,13 +136,36 @@ namespace Benefits_Backend.Domain.SeedData
                 {
                     Id = 2,
                     Name = "Abdallah Fekry Kenawy, Abdullah Mahmoud",
-                    CERT = 3,
+                    CERT = 30,
                     OldBalance = 25658.55m,
                     Contribution = 15439.77m,
                     Income = 1277.134m,
                     Withdrawals = 9175,
                     NewBalance = 33200.45m
-                }
+                },
+                 new MetlifeData
+                 {
+                     Id = 3,
+                     Name = "Mona",
+                     CERT = 2,
+                     OldBalance = 52793.40m,
+                     Contribution = 85299.64m,
+                     Income = 4233.76m,
+                     Withdrawals = 0,
+                     NewBalance = 142326.80m
+                 },
+                         new MetlifeData
+                         {
+                             Id = 4,
+                             Name = "Ziad",
+                             CERT = 3,
+                             OldBalance = 168140m,
+                             Contribution = 89238m,
+                             Income = 9438m,
+                             Withdrawals = 0,
+                             NewBalance = 237070m
+                         }
+
             );
         }
     }

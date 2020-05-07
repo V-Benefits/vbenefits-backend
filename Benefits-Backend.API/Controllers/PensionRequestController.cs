@@ -64,6 +64,17 @@ namespace Benefits_Backend.API.Controllers
                     HiringDate = new DateTime(2015, 09, 15)
                 });
 
+            successFact.Add(
+           new SuccessFactor
+           {
+               StaffId = 4,
+               Name = "Ziad",
+               Band = "F",
+               CostCenter = "EG0200G087",
+               Tenure = 3,
+               SubBand = "F2",
+               HiringDate = new DateTime(2015, 09, 15)
+           });
 
         }
 

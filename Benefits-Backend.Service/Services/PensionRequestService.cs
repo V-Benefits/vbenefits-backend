@@ -17,7 +17,7 @@ namespace Benefits_Backend.Service.Services
         private readonly IPensionEnrollmentRulesService pensionEnrollmentRulesService;
         private readonly IAppSettingService appSettingService;
         private readonly IEnumerable<VestingRules> vestingRulesList;
-
+        private readonly IEnumerable<PensionEnrollmentRules> enrollmentRulesList;
         public PensionRequestService(IPensionRequestRepository pensionRequestRepository, IMetlifeDataRepository metlifeDataRepository, IVestingRulesService vestingRulesService, IPensionEnrollmentRulesService pensionEnrollmentRulesService, IAppSettingService appSettingService)
         {
             this.pensionRequestRepository = pensionRequestRepository;
@@ -28,7 +28,7 @@ namespace Benefits_Backend.Service.Services
             this.appSettingService = appSettingService;
 
             vestingRulesList = vestingRulesService.GetVestingRules();
-            pensionEnrollmentRulesService.GetEnrollmentRules();
+            enrollmentRulesList = pensionEnrollmentRulesService.GetEnrollmentRules();
             appSettingService.GetPensionMaxPercent();
 
 
@@ -66,72 +66,27 @@ namespace Benefits_Backend.Service.Services
 
         public int GetVestingPercent(string band, double tenure)
         {
-            // return vestingRulesList.Where(x => x.FromYear < tenure &&
-            //x.ToYear > tenure).FirstOrDefault().VestingRulesPercentage;
+          
+            var enrollmentMonths = enrollmentRulesList.Where(e => e.Band == band).FirstOrDefault().NumberOfMonthsToEnrollment;
+            var enrollmentYears = enrollmentMonths / 12.0; 
 
-            if (band == "E" || band == "F")
+            var minYear = vestingRulesList.ToList().Min(vr => vr.FromYear);
+            var maxYear = vestingRulesList.ToList().Max(vr => vr.FromYear);
+
+            if (tenure < minYear)
             {
+                return -1;
 
-                //if (successFactorData.Tenure < minYear)
-                //{
-                //    pension.isEligible = false;
-                //}
-                //else
-                //{
-                //    pension.VestingPercent = GetVestingPercent(successFactorData.Tenure);
-                //    pension.isEligible = true;
-                //}
-
-                if (tenure < 2.25)
-                {
-                    return -1;
-                }
-                else if (tenure >= 2.25 && tenure < 3.25)
-                {
-                    return 50;
-                }
-                else if (tenure >= 3.25 && tenure < 4.25)
-                {
-                    return 65;
-                }
-                else if (tenure >= 4.25 && tenure < 5.25)
-                {
-                    return 85;
-                }
-                else if (tenure >= 5.25)
-                {
-                    return 100;
-                }
             }
-            else if (band == "G" || band == "H")
+            else if(tenure> maxYear)
             {
-                if (tenure < 4)
-                {
-                    return -1;
-                }
-                else if (tenure >= 4 && tenure < 5)
-                {
-                    return 50;
-                }
-                else if (tenure >= 5 && tenure < 6)
-                {
-                    return 65;
-                }
-                else if (tenure >= 6 && tenure < 7)
-                {
-                    return 85;
-                }
-                else if (tenure >= 7)
-                {
-                    return 100;
-                }
+                return vestingRulesList.Where(x => x.FromYear == maxYear).FirstOrDefault().VestingRulesPercentage;
             }
             else
             {
-                return -1;
+                return vestingRulesList.Where(x => (x.FromYear + enrollmentYears) < tenure &&
+               (x.ToYear + enrollmentYears) > tenure).FirstOrDefault().VestingRulesPercentage;
             }
-
-            return 0;
         }
 
         public PensionRequest FillPensionObject(int userStaffId, SuccessFactor successFactorData, PensionRequest pension)
