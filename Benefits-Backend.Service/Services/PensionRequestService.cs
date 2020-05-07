@@ -18,7 +18,10 @@ namespace Benefits_Backend.Service.Services
         private readonly IAppSettingService appSettingService;
         private readonly IEnumerable<VestingRules> vestingRulesList;
         private readonly IEnumerable<PensionEnrollmentRules> enrollmentRulesList;
-        public PensionRequestService(IPensionRequestRepository pensionRequestRepository, IMetlifeDataRepository metlifeDataRepository, IVestingRulesService vestingRulesService, IPensionEnrollmentRulesService pensionEnrollmentRulesService, IAppSettingService appSettingService)
+
+        private readonly IRoundDatesService _roundDatesService;
+        public PensionRequestService(IPensionRequestRepository pensionRequestRepository, IRoundDatesService roundDatesService,
+        IMetlifeDataRepository metlifeDataRepository, IVestingRulesService vestingRulesService, IPensionEnrollmentRulesService pensionEnrollmentRulesService, IAppSettingService appSettingService)
         {
             this.pensionRequestRepository = pensionRequestRepository;
             this.metlifeDataRepository = metlifeDataRepository;
@@ -26,6 +29,7 @@ namespace Benefits_Backend.Service.Services
             this.vestingRulesService = vestingRulesService;
             this.pensionEnrollmentRulesService = pensionEnrollmentRulesService;
             this.appSettingService = appSettingService;
+            _roundDatesService = roundDatesService;
 
             vestingRulesList = vestingRulesService.GetVestingRules();
             enrollmentRulesList = pensionEnrollmentRulesService.GetEnrollmentRules();
@@ -89,6 +93,39 @@ namespace Benefits_Backend.Service.Services
             }
         }
 
+        public decimal CalculateCurrentAvailableBalance(decimal currentContribution, decimal balanceOfLastRound,
+            decimal income , decimal withDrawal )
+        {
+           var proratedContribution=  CalculateProratedContribution(currentContribution);
+
+           var balance = (balanceOfLastRound + income + proratedContribution) - withDrawal;
+           return balance;
+        }
+
+        public decimal CalculateProratedContribution(decimal contribution)
+        {
+            var roundDate = _roundDatesService.GetActiveRound();
+            var roundStartDate = roundDate.StartDate;
+            int year;
+
+            if (roundStartDate.Month > 7)
+            {
+                year = roundStartDate.Year;
+            }
+            else
+            {
+                year = roundStartDate.Year - 1;
+            }
+
+            var fixedDate = new DateTime(year, 7, 1);
+
+            var days = roundStartDate - fixedDate;
+            var months = days.Days / 30;
+
+            var proratedContribution = (contribution / 12) * months;
+
+            return proratedContribution;
+        }
         public PensionRequest FillPensionObject(int userStaffId, SuccessFactor successFactorData, PensionRequest pension)
         {
             // pension.Id = userStaffId;
@@ -98,7 +135,11 @@ namespace Benefits_Backend.Service.Services
             // metlife data
             pension.BeginingBalance = metlifeData.OldBalance;
             pension.CurrentyearContribution = metlifeData.Contribution;
-            pension.CurrentAvailableBalance = metlifeData.NewBalance;
+            //change the logic from constants to dynamic data
+            // pension.CurrentAvailableBalance = metlifeData.NewBalance;
+            pension.CurrentAvailableBalance = CalculateCurrentAvailableBalance(metlifeData.Contribution, metlifeData.OldBalance,
+               metlifeData.Income, metlifeData.Withdrawals);
+
             pension.WithdrawalAmmount = metlifeData.Withdrawals;
             pension.LastRoundWithdrawal = metlifeData.Withdrawals;
             pension.Income = metlifeData.Income;
@@ -107,7 +148,10 @@ namespace Benefits_Backend.Service.Services
             /// calculated data 
             pension.VestedBalance = ((pension.VestingPercent * pension.CurrentAvailableBalance) / 100);
             pension.MaxWithdrawalAmount = ((pension.VestedBalance * 65) / 100);
-            pension.ProratedNewContribution = ((pension.CurrentyearContribution / 12) * 8);
+            //change the logic from constants to dynamic data
+           // pension.ProratedNewContribution = ((pension.CurrentyearContribution / 12) * 8);
+            pension.ProratedNewContribution = CalculateProratedContribution(metlifeData.Contribution);
+
             ////
 
             // success factor data 
@@ -116,6 +160,9 @@ namespace Benefits_Backend.Service.Services
             pension.Band = successFactorData.Band;
             pension.CostCenter = successFactorData.CostCenter;
             pension.Tenure = successFactorData.Tenure;
+            //var x = (DateTime.Now - successFactorData.HiringDate);
+            //pension.Tenure = x.Days / 365;
+
             pension.SubBand = successFactorData.SubBand;
             pension.HiringDate = successFactorData.HiringDate;
             ////
