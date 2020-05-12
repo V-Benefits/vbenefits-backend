@@ -49,6 +49,7 @@ namespace Benefits_Backend.Service.Services
        
             PensionRequest pension = new PensionRequest();
             pension.isEligible = true;
+            pension.isEnrolled = true;
 
             if (this.IsWithdraw(userStaffId))
             {
@@ -60,6 +61,7 @@ namespace Benefits_Backend.Service.Services
             if (pension.VestingPercent == -1)
             {
                 pension.isEligible = false;
+                pension.isEnrolled = false;
                 return pension;
             }
 
@@ -79,6 +81,7 @@ namespace Benefits_Backend.Service.Services
 
             if (tenure < minYear)
             {
+                //enrolled after # no months =  (minyear - tenure )* 12
                 return -1;
 
             }

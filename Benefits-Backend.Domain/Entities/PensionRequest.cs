@@ -48,6 +48,7 @@ namespace Benefits_Backend.Domain.Entities
         //public Employee RejectedBy { get; set; }
         public DateTime RejectedOn { get; set; }
 
+        public bool isEnrolled { get; set; }
 
 
     }
