@@ -4,6 +4,7 @@ using Benefits_Backend.Service.IServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 
 namespace Benefits_Backend.Service.Services
@@ -12,16 +13,19 @@ namespace Benefits_Backend.Service.Services
     {
         private readonly IPensionRequestRepository pensionRequestRepository;
         private readonly IMetlifeDataRepository metlifeDataRepository;
-
+        private readonly IEmployeeRepository employeeRepository;
         private readonly IVestingRulesService vestingRulesService;
         private readonly IPensionEnrollmentRulesService pensionEnrollmentRulesService;
         private readonly IAppSettingService appSettingService;
         private readonly IEnumerable<VestingRules> vestingRulesList;
         private readonly IEnumerable<PensionEnrollmentRules> enrollmentRulesList;
-        public PensionRequestService(IPensionRequestRepository pensionRequestRepository, IMetlifeDataRepository metlifeDataRepository, IVestingRulesService vestingRulesService, IPensionEnrollmentRulesService pensionEnrollmentRulesService, IAppSettingService appSettingService)
+        public PensionRequestService(IPensionRequestRepository pensionRequestRepository, IMetlifeDataRepository metlifeDataRepository, 
+            IVestingRulesService vestingRulesService, IPensionEnrollmentRulesService pensionEnrollmentRulesService,
+            IAppSettingService appSettingService, IEmployeeRepository employeeRepository)
         {
             this.pensionRequestRepository = pensionRequestRepository;
             this.metlifeDataRepository = metlifeDataRepository;
+            this.employeeRepository = employeeRepository;
 
             this.vestingRulesService = vestingRulesService;
             this.pensionEnrollmentRulesService = pensionEnrollmentRulesService;
@@ -37,7 +41,40 @@ namespace Benefits_Backend.Service.Services
         public PensionRequest CreatePensionRequest(PensionRequest pensionRequest)
         {
             pensionRequestRepository.Add(pensionRequest);
+            // if the record added successfully to the database
+            // send email for user 
+            SendConfirmationEmail(pensionRequest.StaffId,pensionRequest.Name,pensionRequest.WithdrawalAmmount);
             return pensionRequest;
+        }
+
+        public bool SendConfirmationEmail(int staffId,string name, decimal withdrawalAmount)
+        {
+           // staffId = 12345; I'm using this for testing only
+            string employeeEmail =  employeeRepository.GetEmployeeEmail(staffId);
+            string subject = "Pension Withdrawal Confirmation";
+            string body = "Hi "+ name+ ",<br/> You have submitted pension withdrawal request for " + withdrawalAmount + " EGP.<br/> Your request will be approved and processed. <br/> Kindly follow up your request status from tracking option. <br/> Regards, <br/> V-benefits team. <br/>" + DateTime.Now ;
+            string from = "vodafoneonboarding@gmail.com";
+
+            MailMessage message = new MailMessage(from, employeeEmail);
+            message.Subject = subject;
+            message.Body = body;
+            message.IsBodyHtml = true;
+            //  SmtpClient client = new SmtpClient();
+            SmtpClient client = new SmtpClient("smtp.gmail.com");
+            client.UseDefaultCredentials = false;
+            client.Port = 587;
+            client.Credentials = new System.Net.NetworkCredential("vodafoneonboarding@gmail.com", "Vodafone@1234");
+            client.EnableSsl = true;
+
+            try
+            {
+                client.Send(message);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public PensionRequest CalculatePensionFormula(int userStaffId, SuccessFactor successFactorData)
