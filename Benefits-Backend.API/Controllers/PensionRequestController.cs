@@ -90,6 +90,7 @@ namespace Benefits_Backend.API.Controllers
         [HttpGet]
         public IActionResult Get([FromQuery] int staffId)
         {
+
             var successFactorObject = successFact.Where(sf => sf.StaffId == staffId).FirstOrDefault();
             var pensionRequest = pensionRequestService.CalculatePensionFormula(staffId, successFactorObject);
 

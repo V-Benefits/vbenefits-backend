@@ -50,6 +50,8 @@ namespace Benefits_Backend.Domain.Entities
 
         public bool isEnrolled { get; set; }
 
+        public double NumberOfMonthsToEnroll { get; set; }
+
 
     }
 }

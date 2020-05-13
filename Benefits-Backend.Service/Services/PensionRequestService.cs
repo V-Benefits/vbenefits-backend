@@ -62,6 +62,7 @@ namespace Benefits_Backend.Service.Services
             {
                 pension.isEligible = false;
                 pension.isEnrolled = false;
+                pension.NumberOfMonthsToEnroll = GetNumberOfMonthsToEnroll(successFactorData.Tenure);
                 return pension;
             }
 
@@ -81,9 +82,7 @@ namespace Benefits_Backend.Service.Services
 
             if (tenure < minYear)
             {
-                //enrolled after # no months =  (minyear - tenure )* 12
                 return -1;
-
             }
             else if(tenure> maxYear)
             {
@@ -94,6 +93,13 @@ namespace Benefits_Backend.Service.Services
                 return vestingRulesList.Where(x => (x.FromYear + enrollmentYears) < tenure &&
                (x.ToYear + enrollmentYears) > tenure).FirstOrDefault().VestingRulesPercentage;
             }
+        }
+
+        public double GetNumberOfMonthsToEnroll(double tenure)
+        {
+            var minYear = vestingRulesList.ToList().Min(vr => vr.FromYear);
+            var noOfMonths = (minYear - tenure) * 12;
+            return noOfMonths;
         }
 
         public decimal CalculateCurrentAvailableBalance(decimal currentContribution, decimal balanceOfLastRound,
@@ -129,6 +135,7 @@ namespace Benefits_Backend.Service.Services
 
             return proratedContribution;
         }
+            
         public PensionRequest FillPensionObject(int userStaffId, SuccessFactor successFactorData, PensionRequest pension)
         {
             // pension.Id = userStaffId;
