@@ -2,6 +2,7 @@
 using Benefits_Backend.Domain.Entities;
 using Benefits_Backend.Repository.IRepositories;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Benefits_Backend.Repository.Repositories
@@ -24,6 +25,10 @@ namespace Benefits_Backend.Repository.Repositories
         {
             context.Entry(employee).State = EntityState.Modified;
             return employee;
+        }
+        public string GetEmployeeEmail(int staffId)
+        {
+          return context.Employees.Where(e => e.StaffId == staffId.ToString()).FirstOrDefault().Email;
         }
     }
 }
