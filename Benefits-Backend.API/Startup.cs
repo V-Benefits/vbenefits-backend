@@ -57,6 +57,7 @@ namespace Benefits_Backend.API
 
 
             services.AddScoped<IMetlifeDataRepository, MetlifeDataRepository>();
+            services.AddScoped<IMetlifeDataService, MetlifeDataService>();
 
             services.AddScoped<IRoundDatesRepository, RoundDatesRepository>();
             services.AddScoped<IRoundDatesService, RoundDatesService>();

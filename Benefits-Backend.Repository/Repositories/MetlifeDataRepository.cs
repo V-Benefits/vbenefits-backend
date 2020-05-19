@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Benefits_Backend.Repository.Repositories
 {
@@ -19,5 +20,19 @@ namespace Benefits_Backend.Repository.Repositories
         {
             return context.metlifeData.FirstOrDefault(u => u.CERT == cert);
         }
+
+        public bool Add(MetlifeData metlifeData)
+        {
+            try
+            {
+                 context.metlifeData.Add(metlifeData);
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
+
     }
 }

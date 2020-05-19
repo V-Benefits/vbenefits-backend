@@ -108,7 +108,6 @@ namespace Benefits_Backend.Service.Services
             return pension;
         }
 
-
         public int GetVestingPercent(string band, double tenure)
         {
           

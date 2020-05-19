@@ -27,7 +27,7 @@ namespace Benefits_Backend.API.Controllers
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
             this.pensionRequestService = pensionRequestService;
-
+            #region success factor
             successFact.Add(
                 new SuccessFactor
                 {
@@ -75,7 +75,7 @@ namespace Benefits_Backend.API.Controllers
                SubBand = "F2",
                HiringDate = new DateTime(2015, 09, 15)
            });
-
+            #endregion
         }
 
         [HttpPost]

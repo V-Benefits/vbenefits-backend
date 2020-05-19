@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Benefits_Backend.API.DTO.Employee;
+using Benefits_Backend.API.DTO.MetlifeData;
 using Benefits_Backend.API.DTO.PensionRequest;
 using Benefits_Backend.API.DTO.PhoneProgramRequest;
 using Benefits_Backend.API.DTO.RoundDate;
@@ -21,6 +22,7 @@ namespace Benefits_Backend.API.Helpers
             CreateMap<Employee, EmployeeForViewDTO>();
             CreateMap<PhoneProgramRequestForAddDto,PhoneProgramRequest>();
             CreateMap<PensionRequestForAddDto, PensionRequest>();
+            CreateMap<MetlifeDataForAddDto, MetlifeData>();
 
             CreateMap<RoundDateForAddDto, RoundDate>();
             CreateMap<RoundDate, RoundDateForViewDto>();
