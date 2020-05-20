@@ -16,7 +16,7 @@ namespace Benefits_Backend.Service.Services
             this.metlifeDataRepository = metlifeDataRepository;
         }
 
-      public bool AddMetlifeData(MetlifeData metlifeDataRecord)
+      public bool AddMetlifeDataRecord(MetlifeData metlifeDataRecord)
         {
          
                if(! metlifeDataRepository.Add(metlifeDataRecord))
