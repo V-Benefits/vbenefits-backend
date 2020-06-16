@@ -19,7 +19,7 @@ namespace Benefits_Backend.Repository.Repositories
 
         public async Task<PensionRequest> Add(PensionRequest pensionRequest)
         {
-           await context.PensionRequests.AddAsync(pensionRequest);
+            await context.PensionRequests.AddAsync(pensionRequest);
             return pensionRequest;
         }
     }

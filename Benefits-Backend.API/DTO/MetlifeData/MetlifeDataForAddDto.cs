@@ -9,10 +9,10 @@ namespace Benefits_Backend.API.DTO.MetlifeData
     {
         public string Name { get; set; }
         public int CERT { get; set; }
-        public decimal OldBalance { get; set; }
+        public decimal Oldbalance { get; set; }
         public decimal Contribution { get; set; }
         public decimal Income { get; set; }
         public decimal Withdrawals { get; set; }
-        public decimal NewBalance { get; set; }
+        public decimal Newbalance { get; set; }
     }
 }

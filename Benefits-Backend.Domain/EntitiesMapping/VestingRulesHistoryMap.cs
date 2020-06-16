@@ -18,7 +18,7 @@ namespace Benefits_Backend.Domain.EntitiesMapping
             entityBuilder.Property(t => t.FromYearAfter).IsRequired();
             entityBuilder.Property(t => t.ToYearAfter).IsRequired();
             entityBuilder.Property(t => t.VestingPercentageAfter).IsRequired();
-            entityBuilder.Property(t => t.UpdatedBy).IsRequired();
+            //entityBuilder.Property(t => t.UpdatedBy).IsRequired();
             entityBuilder.Property(t => t.UpdatedOn).IsRequired();
         }
     }

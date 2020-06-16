@@ -16,7 +16,7 @@ namespace Benefits_Backend.Domain.EntitiesMapping
             entityBuilder.Property(t => t.NumberOfMonthsToEnrollmentBefore).IsRequired();
             entityBuilder.Property(p => p.BandAfter).IsRequired();
             entityBuilder.Property(t => t.NumberOfMonthsToEnrollmentAfter).IsRequired();
-            entityBuilder.Property(t => t.UpdatedBy).IsRequired();
+            //entityBuilder.Property(t => t.UpdatedBy).IsRequired();
             entityBuilder.Property(t => t.UpdatedOn).IsRequired().HasColumnType("date");
         }
     }

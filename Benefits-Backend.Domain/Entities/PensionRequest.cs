@@ -22,7 +22,6 @@ namespace Benefits_Backend.Domain.Entities
         public bool isEligible { get; set; }
         #endregion
 
-
         #region SuccessFactor
         public int StaffId { get; set; }
         public string Name { get; set; }

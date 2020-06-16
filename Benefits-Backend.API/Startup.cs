@@ -62,7 +62,8 @@ namespace Benefits_Backend.API
             services.AddScoped<IRoundDatesRepository, RoundDatesRepository>();
             services.AddScoped<IRoundDatesService, RoundDatesService>();
 
-
+            services.AddScoped<IMedicalRequestRepository, MedicalRequestRepository>();
+            services.AddScoped<IMedicalRequestService, MedicalRequestService>();
 
             //services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 

@@ -26,6 +26,7 @@ namespace Benefits_Backend.Repository.Repositories
             try
             {
                  context.metlifeData.Add(metlifeData);
+                context.SaveChanges();
                 return true;
             }
             catch(Exception ex)

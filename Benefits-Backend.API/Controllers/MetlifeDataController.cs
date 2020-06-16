@@ -31,7 +31,7 @@ namespace Benefits_Backend.API.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Post(List<MetlifeDataForAddDto> model)
+        public IActionResult Post(List<MetlifeDataForAddDto> model)
         {
             List<MetlifeData> errorList = new List<MetlifeData>();
             foreach (var metlifeDataRecord in model)
@@ -44,7 +44,7 @@ namespace Benefits_Backend.API.Controllers
                 }
             }
 
-            await unitOfWork.Commit();
+            //await unitOfWork.Commit();
             return Ok();
         }
     }

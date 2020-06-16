@@ -17,6 +17,20 @@ namespace Benefits_Backend.Domain.Context
             new EmployeeMap(modelBuilder.Entity<Employee>());
             new PensionRequestMap(modelBuilder.Entity<PensionRequest>());
 
+            new VestingRulesMap(modelBuilder.Entity<VestingRules>());
+            new VestingRulesHistoryMap(modelBuilder.Entity<VestingRulesHistory>());
+            new RoundDateMap(modelBuilder.Entity<RoundDate>());
+            new PhoneProgramRequestMap(modelBuilder.Entity<PhoneProgramRequest>());
+            new PensionEnrollmentRulesMap(modelBuilder.Entity<PensionEnrollmentRules>());
+            new PensionEnrollmentRulesHistoryMap(modelBuilder.Entity<PensionEnrollmentRulesHistory>());
+            new MetlifeDataMap(modelBuilder.Entity<MetlifeData>());
+            new HistoricalMetlifeDataMap(modelBuilder.Entity<HistoricalMetlifeData>());
+            new MedicalCardRequestForEmployeeMap(modelBuilder.Entity<MedicalCardRequestForEmployee>());
+            new MedicalCardRequestForSpouseMap(modelBuilder.Entity<MedicalCardRequestForSpouse>());
+            new AppSettingMap(modelBuilder.Entity<AppSetting>());
+            new AppSettingHistoriesMap(modelBuilder.Entity<AppSeetingHistory>());
+
+
             modelBuilder.Seed();
         }
         public DbSet<Employee> Employees { get; set; }
@@ -31,6 +45,9 @@ namespace Benefits_Backend.Domain.Context
         public DbSet<AppSetting> AppSettings { get; set; }
         public DbSet<RoundDate> RoundDates { get; set; }
         public DbSet<SuccessFactor> SuccessFactor { get; set; }
+        public DbSet<MedicalCardRequestForEmployee> medicalCardRequestForEmployees  { get; set; }
+        public DbSet<MedicalCardRequestForSpouse> medicalCardRequestForSpouses  { get; set; }
+
     }
 
 }

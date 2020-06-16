@@ -58,7 +58,7 @@ namespace Benefits_Backend.Service.Services
             string employeeEmail =  employeeRepository.GetEmployeeEmail(staffId);
             string subject = "Pension Withdrawal Confirmation";
             string body = "Hi "+ name+ ",<br/> You have submitted pension withdrawal request for " + withdrawalAmount + " EGP.<br/> Your request will be approved and processed. <br/> Kindly follow up your request status from tracking option. <br/> Regards, <br/> V-benefits team. <br/>" + DateTime.Now ;
-            string from = "vodafoneonboarding@gmail.com";
+            string from = "vfgroupfunc.mailboxvoisrewardandbenefits@vodafone.com";
 
             MailMessage message = new MailMessage(from, employeeEmail);
             message.Subject = subject;
@@ -68,7 +68,7 @@ namespace Benefits_Backend.Service.Services
             SmtpClient client = new SmtpClient("smtp.gmail.com");
             client.UseDefaultCredentials = false;
             client.Port = 587;
-            client.Credentials = new System.Net.NetworkCredential("vodafoneonboarding@gmail.com", "Vodafone@1234");
+            client.Credentials = new System.Net.NetworkCredential("vfgroupfunc.mailboxvoisrewardandbenefits@vodafone.com", "Vodafone@1234");
             client.EnableSsl = true;
 
             try

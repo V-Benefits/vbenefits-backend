@@ -12,7 +12,7 @@ namespace Benefits_Backend.Domain.EntitiesMapping
         public PhoneProgramRequestMap(EntityTypeBuilder<PhoneProgramRequest> entityBuilder)
         {
             entityBuilder.HasKey(t => t.Id);
-            entityBuilder.Property(t => t.RequestBy).IsRequired();
+            //entityBuilder.Property(t => t.RequestBy).IsRequired();
             entityBuilder.Property(t => t.RequestFor).IsRequired();
             entityBuilder.Property(t => t.RequestDate).IsRequired().HasColumnType("date");
             
