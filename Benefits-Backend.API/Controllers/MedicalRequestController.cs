@@ -28,23 +28,40 @@ namespace Benefits_Backend.API.Controllers
         }
 
         [HttpPost("AddMedicalCardRequestForEmployee")]
-        public void AddMedicalCardRequestForEmployee([FromBody] EmployeeMedicalRequestForAddDTO employeeMedicalRequestForAddDTO)
+        public async Task<IActionResult> AddMedicalCardRequestForEmployee([FromBody] EmployeeMedicalRequestForAddDTO employeeMedicalRequestForAddDTO)
         {
-            // map from dto to entity
-            // set request date to now 
-            // set active to false
-            // set the employee Id (get it first)
-            // send the mapped one
-            
-            medicalRequestService.AddMedicalCardRequestForEmployee();
+            MedicalCardRequestForEmployee medicalCardRequestForEmployee = mapper.Map<MedicalCardRequestForEmployee>(employeeMedicalRequestForAddDTO);
+            medicalCardRequestForEmployee.RequestedOn = DateTime.Now;
+            medicalCardRequestForEmployee.RequestedById = 1;  /// to be changed later with the actual id
+
+            medicalRequestService.AddMedicalCardRequestForEmployee(medicalCardRequestForEmployee);
+            try
+            {
+               await unitOfWork.Commit();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
         [HttpPost("AddMedicalCardRequestForSpouse")]
-        public void AddMedicalCardRequestForSpouse([FromBody] SpouseMedicalRequestForAddDTO spouseMedicalRequestForAddDTO)
+        public async Task<IActionResult> AddMedicalCardRequestForSpouse([FromBody] SpouseMedicalRequestForAddDTO spouseMedicalRequestForAddDTO)
         {
-            // map from dto to entity
-            // send the mapped one
-            medicalRequestService.AddMedicalCardRequestForSpouse();
+            MedicalCardRequestForSpouse medicalCardRequestForSpouse = mapper.Map<MedicalCardRequestForSpouse>(spouseMedicalRequestForAddDTO);
+            medicalCardRequestForSpouse.RequestedOn = DateTime.Now;
+            medicalCardRequestForSpouse.RequestedById = 1;  /// to be changed later with the actual id
+            medicalRequestService.AddMedicalCardRequestForSpouse(medicalCardRequestForSpouse);
+            try
+            {
+               await unitOfWork.Commit();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
     }
 }
