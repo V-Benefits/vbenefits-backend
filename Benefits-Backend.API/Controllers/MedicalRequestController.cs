@@ -27,35 +27,69 @@ namespace Benefits_Backend.API.Controllers
             this.medicalRequestService = medicalRequestService;
         }
 
-        [HttpPost("AddMedicalCardRequestForEmployee")]
-        public async Task<IActionResult> AddMedicalCardRequestForEmployee([FromBody] EmployeeMedicalRequestForAddDTO employeeMedicalRequestForAddDTO)
-        {
-            MedicalCardRequestForEmployee medicalCardRequestForEmployee = mapper.Map<MedicalCardRequestForEmployee>(employeeMedicalRequestForAddDTO);
-            medicalCardRequestForEmployee.RequestedOn = DateTime.Now;
-            medicalCardRequestForEmployee.RequestedById = 1;  /// to be changed later with the actual id
+        //[HttpPost("AddMedicalCardRequestForEmployee")]
+        //public async Task<IActionResult> AddMedicalCardRequestForEmployee([FromBody] EmployeeMedicalRequestForAddDTO employeeMedicalRequestForAddDTO)
+        //{
+        //    MedicalCardRequestForEmployee medicalCardRequestForEmployee = mapper.Map<MedicalCardRequestForEmployee>(employeeMedicalRequestForAddDTO);
+        //    medicalCardRequestForEmployee.RequestedOn = DateTime.Now;
+        //    medicalCardRequestForEmployee.RequestedById = 1;  /// to be changed later with the actual id
 
-            medicalRequestService.AddMedicalCardRequestForEmployee(medicalCardRequestForEmployee);
+        //    medicalRequestService.AddMedicalCardRequestForEmployee(medicalCardRequestForEmployee);
+        //    try
+        //    {
+        //       await unitOfWork.Commit();
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex);
+        //    }
+        //}
+
+        //[HttpPost("AddMedicalCardRequestForSpouse")]
+        //public async Task<IActionResult> AddMedicalCardRequestForSpouse([FromBody] SpouseMedicalRequestForAddDTO spouseMedicalRequestForAddDTO)
+        //{
+        //    MedicalCardRequestForSpouse medicalCardRequestForSpouse = mapper.Map<MedicalCardRequestForSpouse>(spouseMedicalRequestForAddDTO);
+        //    medicalCardRequestForSpouse.RequestedOn = DateTime.Now;
+        //    medicalCardRequestForSpouse.RequestedById = 1;  /// to be changed later with the actual id
+        //    medicalRequestService.AddMedicalCardRequestForSpouse(medicalCardRequestForSpouse);
+        //    try
+        //    {
+        //       await unitOfWork.Commit();
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex);
+        //    }
+        //}
+
+
+        [HttpPost("AddMedicalCardRequest")]
+        public async Task<IActionResult> AddMedicalCardRequest([FromBody] MedicalRequestForAddDTO medicalRequestForAddDTO)
+        {
+            if (medicalRequestForAddDTO.ChildrenNumber > 0)
+            {
+                foreach (var Child in medicalRequestForAddDTO.ChildrenInfoDTOs)
+                {
+                    MedicalCardRequest medicalCardRequest = mapper.Map<MedicalCardRequest>(Child);
+                    medicalCardRequest.RequestType = medicalRequestForAddDTO.RequestType;
+                    medicalCardRequest.StaffId = medicalRequestForAddDTO.StaffId;
+                    medicalCardRequest.RequestedOn = DateTime.Now;
+                    medicalCardRequest.RequestedById = 1;  /// to be changed later with the actual id
+                    medicalRequestService.AddMedicalCardRequest(medicalCardRequest);
+                }
+            }
+            else
+            {
+                MedicalCardRequest medicalCardRequest = mapper.Map<MedicalCardRequest>(medicalRequestForAddDTO);
+                medicalCardRequest.RequestedOn = DateTime.Now;
+                medicalCardRequest.RequestedById = 1;  /// to be changed later with the actual id
+                medicalRequestService.AddMedicalCardRequest(medicalCardRequest);
+            }
             try
             {
-               await unitOfWork.Commit();
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
-
-        [HttpPost("AddMedicalCardRequestForSpouse")]
-        public async Task<IActionResult> AddMedicalCardRequestForSpouse([FromBody] SpouseMedicalRequestForAddDTO spouseMedicalRequestForAddDTO)
-        {
-            MedicalCardRequestForSpouse medicalCardRequestForSpouse = mapper.Map<MedicalCardRequestForSpouse>(spouseMedicalRequestForAddDTO);
-            medicalCardRequestForSpouse.RequestedOn = DateTime.Now;
-            medicalCardRequestForSpouse.RequestedById = 1;  /// to be changed later with the actual id
-            medicalRequestService.AddMedicalCardRequestForSpouse(medicalCardRequestForSpouse);
-            try
-            {
-               await unitOfWork.Commit();
+                await unitOfWork.Commit();
                 return Ok();
             }
             catch (Exception ex)

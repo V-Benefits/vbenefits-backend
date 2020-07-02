@@ -15,14 +15,20 @@ namespace Benefits_Backend.Repository.Repositories
         {
             this.context = context;
         }
-        public void AddMedicalCardRequestForEmployee(MedicalCardRequestForEmployee medicalCardRequestForEmployee)
+
+        public void AddMedicalCardRequest(MedicalCardRequest medicalCardRequest)
         {
-            context.medicalCardRequestForEmployees.Add(medicalCardRequestForEmployee);
+            context.medicalCardRequests.Add(medicalCardRequest);
         }
 
-        public void AddMedicalCardRequestForSpouse(MedicalCardRequestForSpouse medicalCardRequestForSpouse)
-        {
-            context.medicalCardRequestForSpouses.Add(medicalCardRequestForSpouse);
-        }
+        //public void AddMedicalCardRequestForEmployee(MedicalCardRequestForEmployee medicalCardRequestForEmployee)
+        //{
+        //    context.medicalCardRequestForEmployees.Add(medicalCardRequestForEmployee);
+        //}
+
+        //public void AddMedicalCardRequestForSpouse(MedicalCardRequestForSpouse medicalCardRequestForSpouse)
+        //{
+        //    context.medicalCardRequestForSpouses.Add(medicalCardRequestForSpouse);
+        //}
     }
 }

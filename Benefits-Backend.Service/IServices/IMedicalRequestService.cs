@@ -7,7 +7,9 @@ namespace Benefits_Backend.Service.IServices
 {
    public interface IMedicalRequestService
     {
-        void AddMedicalCardRequestForEmployee(MedicalCardRequestForEmployee medicalCardRequestForEmployee);
-        void AddMedicalCardRequestForSpouse(MedicalCardRequestForSpouse medicalCardRequestForSpouse);
+        //void AddMedicalCardRequestForEmployee(MedicalCardRequestForEmployee medicalCardRequestForEmployee);
+        //void AddMedicalCardRequestForSpouse(MedicalCardRequestForSpouse medicalCardRequestForSpouse);
+        void AddMedicalCardRequest(MedicalCardRequest medicalCardRequest);
+
     }
 }

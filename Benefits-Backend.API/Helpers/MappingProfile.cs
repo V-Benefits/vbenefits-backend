@@ -29,6 +29,9 @@ namespace Benefits_Backend.API.Helpers
             CreateMap<RoundDate, RoundDateForViewDto>();
             CreateMap<EmployeeMedicalRequestForAddDTO, MedicalCardRequestForEmployee>();
             CreateMap<SpouseMedicalRequestForAddDTO, MedicalCardRequestForSpouse>();
+            CreateMap<MedicalRequestForAddDTO, MedicalCardRequest>();
+            CreateMap<ChildrenInfoDTO, MedicalCardRequest>();
+
         }
 
     }

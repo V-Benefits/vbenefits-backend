@@ -47,6 +47,7 @@ namespace Benefits_Backend.Domain.Context
         public DbSet<SuccessFactor> SuccessFactor { get; set; }
         public DbSet<MedicalCardRequestForEmployee> medicalCardRequestForEmployees  { get; set; }
         public DbSet<MedicalCardRequestForSpouse> medicalCardRequestForSpouses  { get; set; }
+        public DbSet<MedicalCardRequest> medicalCardRequests { get; set; }
 
     }
 

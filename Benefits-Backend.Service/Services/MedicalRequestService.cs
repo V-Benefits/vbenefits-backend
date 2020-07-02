@@ -12,14 +12,19 @@ namespace Benefits_Backend.Service.Services
             this.medicalRequestRepository = medicalRequestRepository;
         }
 
-        public void AddMedicalCardRequestForEmployee(MedicalCardRequestForEmployee medicalCardRequestForEmployee)
+        public void AddMedicalCardRequest(MedicalCardRequest medicalCardRequest)
         {
-            medicalRequestRepository.AddMedicalCardRequestForEmployee(medicalCardRequestForEmployee);
+            medicalRequestRepository.AddMedicalCardRequest(medicalCardRequest);
         }
 
-        public void AddMedicalCardRequestForSpouse(MedicalCardRequestForSpouse medicalCardRequestForSpouse)
-        {
-            medicalRequestRepository.AddMedicalCardRequestForSpouse(medicalCardRequestForSpouse);
-        }
+        //public void AddMedicalCardRequestForEmployee(MedicalCardRequestForEmployee medicalCardRequestForEmployee)
+        //{
+        //    medicalRequestRepository.AddMedicalCardRequestForEmployee(medicalCardRequestForEmployee);
+        //}
+
+        //public void AddMedicalCardRequestForSpouse(MedicalCardRequestForSpouse medicalCardRequestForSpouse)
+        //{
+        //    medicalRequestRepository.AddMedicalCardRequestForSpouse(medicalCardRequestForSpouse);
+        //}
     }
 }
