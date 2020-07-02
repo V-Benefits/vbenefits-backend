@@ -67,7 +67,10 @@ namespace Benefits_Backend.API
 
             //services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddEntityFrameworkNpgsql().AddDbContext<ApplicationContext>(opt =>
+    opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup));
             // Register the Swagger generator, defining 1 or more Swagger documents
