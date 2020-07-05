@@ -1,0 +1,19 @@
+﻿using Benefits_Backend_Core.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace Benefits_Backend_Core.Domain.EntitiesMapping
+{
+    public class EmployeeMap
+    {
+        public EmployeeMap(EntityTypeBuilder<Employee> entityBuilder)
+        {
+            entityBuilder.HasKey(t => t.Id);
+            entityBuilder.Property(t => t.StaffId).IsRequired();
+            entityBuilder.Property(t => t.DateOfBirth).HasColumnType("date");
+
+            //entityBuilder.HasMany<PensionRequest>(p => p.PensionRequests)
+            //               .WithOne().HasForeignKey(con => con.ApprovedById);
+        }
+    }
+}

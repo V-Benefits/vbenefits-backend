@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Benefirs_Backend_Core.Repository</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Benefits-Backend-Core.Domain\Benefits-Backend-Core.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="IRepositories\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="UnitOFWork\" />
+  </ItemGroup>
+</Project>

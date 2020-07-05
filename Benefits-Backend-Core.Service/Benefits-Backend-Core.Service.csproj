@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Benefits_Backend_Core.Service</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Benefits-Backend-Core.Domain\Benefits-Backend-Core.Domain.csproj" />
+    <ProjectReference Include="..\Benefirs-Backend-Core.Repository\Benefits-Backend-Core.Repository.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="IServices\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+</Project>
