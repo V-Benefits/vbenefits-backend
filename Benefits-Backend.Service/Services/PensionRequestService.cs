@@ -236,5 +236,25 @@ namespace Benefits_Backend.Service.Services
                 return false;
             }
         }
+
+        public List<PensionRequest> GetAllRequests()
+        {
+          return  pensionRequestRepository.GetAllRequests();
+        }
+
+        public void RejectRequest(int staffId)
+        {
+            pensionRequestRepository.RejectRequest(staffId);
+        }
+
+        //public List<PensionRequest> GetApprovedRequests()
+        //{
+        //    return pensionRequestRepository.GetApprovedRequests();
+        //}
+
+        //public List<PensionRequest> GetCanceledRequests()
+        //{
+        //    return pensionRequestRepository.GetCanceledRequests();
+        //}
     }
 }

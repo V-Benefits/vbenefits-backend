@@ -34,23 +34,27 @@ namespace Benefits_Backend.Domain.Entities
 
         public int RequestedById { get; set; }
         public Employee RequestedBy { get; set; }
-
         public DateTime RequestedOn { get; set; }
         public bool isActive { get; set; } = false;
+        #region approved
         public bool isApproved { get; set; }
-
         //public int ApprovedById { get; set; }
         //public Employee ApprovedBy { get; set; }
         public DateTime ApprovedOn { get; set; }
-        //public int RejectedById { get; set; }
+        #endregion
 
+        #region rejected
+        public bool isRejected { get; set; }
+        //public int RejectedById { get; set; }
         //public Employee RejectedBy { get; set; }
         public DateTime RejectedOn { get; set; }
-
+        #endregion
         public bool isEnrolled { get; set; }
 
         public double NumberOfMonthsToEnroll { get; set; }
+        public bool isCanceled { get; set; } = false;
 
+        public string Status { get; set; } = "Active";
 
     }
 }

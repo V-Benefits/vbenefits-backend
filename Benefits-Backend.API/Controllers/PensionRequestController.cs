@@ -97,5 +97,31 @@ namespace Benefits_Backend.API.Controllers
             return Ok(pensionRequest);
         }
 
+        [HttpGet("GetAllPensionRequests")]
+        public IActionResult GetAllPensionRequests()
+        {
+            return Ok(pensionRequestService.GetAllRequests());
+        }
+
+        [HttpGet("RejectPensionRequest")]
+        public IActionResult RejectPensionRequest(int staffId)
+        {
+            pensionRequestService.RejectRequest(staffId);
+            return Ok();
+        }
+
+
+        //[HttpGet("GetApprovedPensionRequests")]
+        //public IActionResult GetApprovedPensionRequests()
+        //{
+        //    return Ok(pensionRequestService.GetApprovedRequests());
+        //}
+
+        //[HttpGet("GetCanceledPensionRequests")]
+        //public IActionResult GetCanceledPensionRequests()
+        //{
+        //    return Ok(pensionRequestService.GetCanceledRequests());
+        //}
+
     }
 }
