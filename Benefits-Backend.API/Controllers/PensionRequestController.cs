@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Sources;
 using AutoMapper;
 using Benefits_Backend.API.DTO.PensionRequest;
 using Benefits_Backend.Domain.Entities;
@@ -100,13 +101,15 @@ namespace Benefits_Backend.API.Controllers
         [HttpGet("GetAllPensionRequests")]
         public IActionResult GetAllPensionRequests()
         {
-            return Ok(pensionRequestService.GetAllRequests());
+            var pensionRequestDTO = mapper.Map<PensionRequestDTO>(pensionRequestService.GetAllRequests());
+            return Ok(pensionRequestDTO);
         }
 
         [HttpGet("RejectPensionRequest")]
         public IActionResult RejectPensionRequest(int staffId)
         {
             pensionRequestService.RejectRequest(staffId);
+            unitOfWork.Commit();
             return Ok();
         }
 

@@ -118,9 +118,22 @@ namespace Benefits_Backend.Domain.SeedData
                     Value = "65"
                 });
 
+            modelBuilder.Entity<URLsLookup>().HasData(
+            new URLsLookup
+            {
+                Id = 1,
+                Key = "PensionPolicyURL",
+                Value = ""
+            },
+             new URLsLookup
+             {
+                 Id = 2,
+                 Key = "PensionPolicyFilePath",
+                 Value = ""
+             }
+            ) ;
 
-
-            modelBuilder.Entity<MetlifeData>().HasData(
+           modelBuilder.Entity<MetlifeData>().HasData(
                 new MetlifeData
                 {
                     Id = 1,
@@ -143,7 +156,7 @@ namespace Benefits_Backend.Domain.SeedData
                     Withdrawals = 9175,
                     NewBalance = 33200.45m
                 },
-                 new MetlifeData
+                new MetlifeData
                  {
                      Id = 3,
                      Name = "Mona",
@@ -154,7 +167,7 @@ namespace Benefits_Backend.Domain.SeedData
                      Withdrawals = 0,
                      NewBalance = 142326.80m
                  },
-                         new MetlifeData
+                new MetlifeData
                          {
                              Id = 4,
                              Name = "Ziad",

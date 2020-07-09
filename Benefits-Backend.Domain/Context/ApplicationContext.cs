@@ -29,7 +29,7 @@ namespace Benefits_Backend.Domain.Context
             new MedicalCardRequestForSpouseMap(modelBuilder.Entity<MedicalCardRequestForSpouse>());
             new AppSettingMap(modelBuilder.Entity<AppSetting>());
             new AppSettingHistoriesMap(modelBuilder.Entity<AppSeetingHistory>());
-
+            new URLsLookupMap(modelBuilder.Entity<URLsLookup>());
 
             modelBuilder.Seed();
         }
@@ -48,6 +48,7 @@ namespace Benefits_Backend.Domain.Context
         public DbSet<MedicalCardRequestForEmployee> medicalCardRequestForEmployees  { get; set; }
         public DbSet<MedicalCardRequestForSpouse> medicalCardRequestForSpouses  { get; set; }
         public DbSet<MedicalCardRequest> medicalCardRequests { get; set; }
+        public DbSet<URLsLookup> URLsLookups { get; set; }
 
     }
 

@@ -23,6 +23,7 @@ namespace Benefits_Backend.API.Helpers
             CreateMap<Employee, EmployeeForViewDTO>();
             CreateMap<PhoneProgramRequestForAddDto,PhoneProgramRequest>();
             CreateMap<PensionRequestForAddDto, PensionRequest>();
+            CreateMap<PensionRequest, PensionRequestDTO>();
             CreateMap<MetlifeDataForAddDto, MetlifeData>();
 
             CreateMap<RoundDateForAddDto, RoundDate>();
