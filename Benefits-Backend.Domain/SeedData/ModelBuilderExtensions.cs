@@ -154,19 +154,41 @@ namespace Benefits_Backend.Domain.SeedData
                      Withdrawals = 0,
                      NewBalance = 142326.80m
                  },
-                         new MetlifeData
-                         {
-                             Id = 4,
-                             Name = "Ziad",
-                             CERT = 3,
-                             OldBalance = 168140m,
-                             Contribution = 89238m,
-                             Income = 9438m,
-                             Withdrawals = 0,
-                             NewBalance = 237070m
-                         }
+                  new MetlifeData
+                  {
+                      Id = 4,
+                      Name = "Ziad",
+                      CERT = 3,
+                      OldBalance = 168140m,
+                      Contribution = 89238m,
+                      Income = 9438m,
+                      Withdrawals = 0,
+                      NewBalance = 237070m
+                  },
+                  new MetlifeData {
+                      Id = 5,
+                      Name = "Mohamed AlMokadem",
+                      CERT = 26018,
+                      OldBalance = 168140m,
+                      Contribution = 89238m,
+                      Income = 9438m,
+                      Withdrawals = 0,
+                      NewBalance = 237070m
+                  }
 
             );
+
+            modelBuilder.Entity<RoundDate>().HasData(
+                new RoundDate
+                {
+                    Id = 1,
+                    IsActive = true,
+                    StartDate = new DateTime(2020, 7, 1),
+                    EndDate = new DateTime(2020, 7, 30),
+                    RoundName = "July 2020"
+                });
+
+
         }
     }
 }

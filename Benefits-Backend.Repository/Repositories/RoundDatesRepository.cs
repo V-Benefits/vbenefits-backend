@@ -22,7 +22,7 @@ namespace Benefits_Backend.Repository.Repositories
 
         public RoundDate GetActiveRound()
         {
-           var round=  _context.RoundDates.Where(x => x.IsActive == true).SingleOrDefault();
+           var round =  _context.RoundDates.Where(x => x.IsActive == true).SingleOrDefault();
            return round;
         }
 
