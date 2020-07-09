@@ -3,57 +3,66 @@ using System;
 using Benefits_Backend.Domain.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Benefits_Backend.Domain.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200430215513_mig-5")]
-    partial class mig5
+    [Migration("20200708173748_bd-create")]
+    partial class bdcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.2")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
+                .HasAnnotation("ProductVersion", "3.1.4")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("Benefits_Backend.Domain.Entities.AppSeetingHistory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("AppSettingId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("ChangedById")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("ChangedOn")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
+
+                    b.Property<int?>("EmployeeId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Key")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("NewValue")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("OldValue")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AppSettingId");
 
                     b.HasIndex("ChangedById");
+
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("AppSeetingHistory");
                 });
@@ -62,17 +71,20 @@ namespace Benefits_Backend.Domain.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Key")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -92,30 +104,30 @@ namespace Benefits_Backend.Domain.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("date");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("LandlineNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("MobileNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("NationalId")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("StaffId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -161,11 +173,11 @@ namespace Benefits_Backend.Domain.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("CERT")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<float>("Contribution")
                         .HasColumnType("real");
@@ -174,7 +186,7 @@ namespace Benefits_Backend.Domain.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<float>("NewBalance")
                         .HasColumnType("real");
@@ -183,10 +195,10 @@ namespace Benefits_Backend.Domain.Migrations
                         .HasColumnType("real");
 
                     b.Property<int>("UpdatedById")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("UpdatedCERT")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<float>("UpdatedContribution")
                         .HasColumnType("real");
@@ -195,13 +207,13 @@ namespace Benefits_Backend.Domain.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("UpdatedName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<float>("UpdatedNewBalance")
                         .HasColumnType("real");
 
                     b.Property<DateTime>("UpdatedON")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<float>("UpdatedOldBalance")
                         .HasColumnType("real");
@@ -217,33 +229,147 @@ namespace Benefits_Backend.Domain.Migrations
                     b.ToTable("historicalMetlifeData");
                 });
 
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.MedicalCardRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("BirthCertificate")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ChildImage")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ChildName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("MarrigeCertificate")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PersonalImage")
+                        .HasColumnType("text");
+
+                    b.Property<string>("RequestType")
+                        .HasColumnType("text");
+
+                    b.Property<int>("RequestedById")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("RequestedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("SpouseImage")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SpouseName")
+                        .HasColumnType("text");
+
+                    b.Property<int>("StaffId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RequestedById");
+
+                    b.ToTable("medicalCardRequests");
+                });
+
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.MedicalCardRequestForEmployee", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("PersonalImage")
+                        .HasColumnType("text");
+
+                    b.Property<int>("RequestedById")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("RequestedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("StaffId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RequestedById");
+
+                    b.ToTable("medicalCardRequestForEmployees");
+                });
+
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.MedicalCardRequestForSpouse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("MarrigeCertificate")
+                        .HasColumnType("text");
+
+                    b.Property<int>("RequestedById")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("RequestedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("SpouseImage")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SpouseName")
+                        .HasColumnType("text");
+
+                    b.Property<int>("StaffId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RequestedById");
+
+                    b.ToTable("medicalCardRequestForSpouses");
+                });
+
             modelBuilder.Entity("Benefits_Backend.Domain.Entities.MetlifeData", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("CERT")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<decimal>("Contribution")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<decimal>("Income")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<decimal>("NewBalance")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<decimal>("OldBalance")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<decimal>("Withdrawals")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.HasKey("Id");
 
@@ -253,7 +379,7 @@ namespace Benefits_Backend.Domain.Migrations
                         new
                         {
                             Id = 1,
-                            CERT = 2,
+                            CERT = 20,
                             Contribution = 85299.64m,
                             Income = 4233.757m,
                             Name = "MAHMOUD, ASHRAF",
@@ -264,13 +390,35 @@ namespace Benefits_Backend.Domain.Migrations
                         new
                         {
                             Id = 2,
-                            CERT = 3,
+                            CERT = 30,
                             Contribution = 15439.77m,
                             Income = 1277.134m,
                             Name = "Abdallah Fekry Kenawy, Abdullah Mahmoud",
                             NewBalance = 33200.45m,
                             OldBalance = 25658.55m,
                             Withdrawals = 9175m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CERT = 2,
+                            Contribution = 85299.64m,
+                            Income = 4233.76m,
+                            Name = "Mona",
+                            NewBalance = 142326.80m,
+                            OldBalance = 52793.40m,
+                            Withdrawals = 0m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CERT = 3,
+                            Contribution = 89238m,
+                            Income = 9438m,
+                            Name = "Ziad",
+                            NewBalance = 237070m,
+                            OldBalance = 168140m,
+                            Withdrawals = 0m
                         });
                 });
 
@@ -278,14 +426,15 @@ namespace Benefits_Backend.Domain.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Band")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("NumberOfMonthsToEnrollment")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -328,26 +477,28 @@ namespace Benefits_Backend.Domain.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("BandAfter")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("BandBefore")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("NumberOfMonthsToEnrollmentAfter")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("NumberOfMonthsToEnrollmentBefore")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("UpdatedById")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("UpdatedOn")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.HasKey("Id");
 
@@ -360,20 +511,20 @@ namespace Benefits_Backend.Domain.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<DateTime>("ApprovedOn")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Band")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<decimal>("BeginingBalance")
                         .HasColumnType("decimal(18,4)");
 
                     b.Property<string>("CostCenter")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<decimal>("CurrentAvailableBalance")
                         .HasColumnType("decimal(18,4)");
@@ -382,7 +533,7 @@ namespace Benefits_Backend.Domain.Migrations
                         .HasColumnType("decimal(18,4)");
 
                     b.Property<DateTime>("HiringDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<decimal>("Income")
                         .HasColumnType("decimal(18,4)");
@@ -394,28 +545,37 @@ namespace Benefits_Backend.Domain.Migrations
                         .HasColumnType("decimal(18,4)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
+
+                    b.Property<double>("NumberOfMonthsToEnroll")
+                        .HasColumnType("double precision");
 
                     b.Property<decimal>("ProratedNewContribution")
                         .HasColumnType("decimal(18,4)");
 
                     b.Property<DateTime>("RejectedOn")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("RequestedById")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("RequestedOn")
                         .HasColumnType("date");
 
                     b.Property<int>("StaffId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("text");
 
                     b.Property<string>("SubBand")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<double>("Tenure")
-                        .HasColumnType("float");
+                        .HasColumnType("double precision");
+
+                    b.Property<decimal>("VestedBalance")
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<decimal>("VestingPercent")
                         .HasColumnType("decimal(18,4)");
@@ -423,15 +583,23 @@ namespace Benefits_Backend.Domain.Migrations
                     b.Property<decimal>("WithdrawalAmmount")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<string>("YearsOfService")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("isActive")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("isApproved")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("isCanceled")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("isEligible")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("isEnrolled")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("isRejected")
+                        .HasColumnType("boolean");
 
                     b.HasKey("Id");
 
@@ -444,17 +612,18 @@ namespace Benefits_Backend.Domain.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("RequestById")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("RequestDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<string>("RequestFor")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -463,21 +632,79 @@ namespace Benefits_Backend.Domain.Migrations
                     b.ToTable("PhoneProgramRequests");
                 });
 
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.RoundDate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("date");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("RoundName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("date");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RoundDates");
+                });
+
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.SuccessFactor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Band")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CostCenter")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("HiringDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int>("StaffId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("SubBand")
+                        .HasColumnType("text");
+
+                    b.Property<double>("Tenure")
+                        .HasColumnType("double precision");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SuccessFactor");
+                });
+
             modelBuilder.Entity("Benefits_Backend.Domain.Entities.VestingRules", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("FromYear")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("ToYear")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("VestingRulesPercentage")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -518,32 +745,32 @@ namespace Benefits_Backend.Domain.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("FromYearAfter")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("FromYearBefore")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("ToYearAfter")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("ToYearBefore")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("UpdatedById")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("UpdatedOn")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("VestingPercentageAfter")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("VestingPercentageBefore")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -561,8 +788,39 @@ namespace Benefits_Backend.Domain.Migrations
                         .IsRequired();
 
                     b.HasOne("Benefits_Backend.Domain.Entities.Employee", "ChangedBy")
-                        .WithMany("AppSeetingHistories")
+                        .WithMany()
                         .HasForeignKey("ChangedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Benefits_Backend.Domain.Entities.Employee", null)
+                        .WithMany("AppSeetingHistories")
+                        .HasForeignKey("EmployeeId");
+                });
+
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.MedicalCardRequest", b =>
+                {
+                    b.HasOne("Benefits_Backend.Domain.Entities.Employee", "RequestedBy")
+                        .WithMany()
+                        .HasForeignKey("RequestedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.MedicalCardRequestForEmployee", b =>
+                {
+                    b.HasOne("Benefits_Backend.Domain.Entities.Employee", "RequestedBy")
+                        .WithMany()
+                        .HasForeignKey("RequestedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.MedicalCardRequestForSpouse", b =>
+                {
+                    b.HasOne("Benefits_Backend.Domain.Entities.Employee", "RequestedBy")
+                        .WithMany()
+                        .HasForeignKey("RequestedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

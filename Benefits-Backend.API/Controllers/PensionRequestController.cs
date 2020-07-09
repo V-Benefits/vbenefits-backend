@@ -66,16 +66,27 @@ namespace Benefits_Backend.API.Controllers
                 });
 
             successFact.Add(
-           new SuccessFactor
-           {
-               StaffId = 4,
-               Name = "Ziad",
-               Band = "F",
-               CostCenter = "EG0200G087",
-               Tenure = 3,
-               SubBand = "F2",
-               HiringDate = new DateTime(2015, 09, 15)
-           });
+                new SuccessFactor
+                {
+                    StaffId = 4,
+                    Name = "Ziad",
+                    Band = "F",
+                    CostCenter = "EG0200G087",
+                    Tenure = 3,
+                    SubBand = "F2",
+                    HiringDate = new DateTime(2015, 09, 15)
+                });
+            successFact.Add(
+                new SuccessFactor
+                {
+                    StaffId = 26018,
+                    Name = "Mohamed AlMokadem",
+                    Band = "G",
+                    CostCenter = "EG0200G087",
+                    Tenure = 4.5,
+                    SubBand = "G2",
+                    HiringDate = new DateTime(2018, 03, 20)
+                });
             #endregion
         }
 

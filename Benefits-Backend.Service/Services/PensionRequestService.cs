@@ -22,9 +22,9 @@ namespace Benefits_Backend.Service.Services
         private readonly IRoundDatesService _roundDatesService;
 
         public PensionRequestService(IPensionRequestRepository pensionRequestRepository,
-        IMetlifeDataRepository metlifeDataRepository, 
+        IMetlifeDataRepository metlifeDataRepository,
             IVestingRulesService vestingRulesService, IPensionEnrollmentRulesService pensionEnrollmentRulesService,
-            IAppSettingService appSettingService, IEmployeeRepository employeeRepository,IRoundDatesService roundDatesService)
+            IAppSettingService appSettingService, IEmployeeRepository employeeRepository, IRoundDatesService roundDatesService)
 
         {
             this.pensionRequestRepository = pensionRequestRepository;
@@ -48,16 +48,16 @@ namespace Benefits_Backend.Service.Services
             pensionRequestRepository.Add(pensionRequest);
             // if the record added successfully to the database
             // send email for user 
-            SendConfirmationEmail(pensionRequest.StaffId,pensionRequest.Name,pensionRequest.WithdrawalAmmount);
+            SendConfirmationEmail(pensionRequest.StaffId, pensionRequest.Name, pensionRequest.WithdrawalAmmount);
             return pensionRequest;
         }
 
-        public bool SendConfirmationEmail(int staffId,string name, decimal withdrawalAmount)
+        public bool SendConfirmationEmail(int staffId, string name, decimal withdrawalAmount)
         {
-           // staffId = 12345; I'm using this for testing only
-            string employeeEmail =  employeeRepository.GetEmployeeEmail(staffId);
+            // staffId = 12345; I'm using this for testing only
+            string employeeEmail = employeeRepository.GetEmployeeEmail(staffId);
             string subject = "Pension Withdrawal Confirmation";
-            string body = "Hi "+ name+ ",<br/> You have submitted pension withdrawal request for " + withdrawalAmount + " EGP.<br/> Your request will be approved and processed. <br/> Kindly follow up your request status from tracking option. <br/> Regards, <br/> V-benefits team. <br/>" + DateTime.Now ;
+            string body = "Hi " + name + ",<br/> You have submitted pension withdrawal request for " + withdrawalAmount + " EGP.<br/> Your request will be approved and processed. <br/> Kindly follow up your request status from tracking option. <br/> Regards, <br/> V-benefits team. <br/>" + DateTime.Now;
             string from = "vfgroupfunc.mailboxvoisrewardandbenefits@vodafone.com";
 
             MailMessage message = new MailMessage(from, employeeEmail);
@@ -84,7 +84,7 @@ namespace Benefits_Backend.Service.Services
 
         public PensionRequest CalculatePensionFormula(int userStaffId, SuccessFactor successFactorData)
         {
-       
+
             PensionRequest pension = new PensionRequest();
             pension.isEligible = true;
             pension.isEnrolled = true;
@@ -93,9 +93,9 @@ namespace Benefits_Backend.Service.Services
             {
                 pension.isEligible = false;
                 return pension;
-            } 
+            }
 
-          pension.VestingPercent = GetVestingPercent(successFactorData.Band, successFactorData.Tenure);
+            pension.VestingPercent = GetVestingPercent(successFactorData.Band, successFactorData.Tenure);
             if (pension.VestingPercent == -1)
             {
                 pension.isEligible = false;
@@ -104,31 +104,32 @@ namespace Benefits_Backend.Service.Services
                 return pension;
             }
 
-            pension = FillPensionObject(userStaffId ,successFactorData , pension);
+            pension = FillPensionObject(userStaffId, successFactorData, pension);
             return pension;
         }
 
         public int GetVestingPercent(string band, double tenure)
         {
-          
+
             var enrollmentMonths = enrollmentRulesList.Where(e => e.Band == band).FirstOrDefault().NumberOfMonthsToEnrollment;
-            var enrollmentYears = enrollmentMonths / 12.0; 
+            var enrollmentYears = enrollmentMonths / 12.0;
 
             var minYear = vestingRulesList.ToList().Min(vr => vr.FromYear);
             var maxYear = vestingRulesList.ToList().Max(vr => vr.FromYear);
 
-            if (tenure < minYear)
+            if (tenure < minYear + enrollmentYears)
             {
                 return -1;
             }
-            else if(tenure> maxYear)
+            else if (tenure > maxYear)
             {
                 return vestingRulesList.Where(x => x.FromYear == maxYear).FirstOrDefault().VestingRulesPercentage;
             }
             else
             {
+
                 return vestingRulesList.Where(x => (x.FromYear + enrollmentYears) < tenure &&
-               (x.ToYear + enrollmentYears) > tenure).FirstOrDefault().VestingRulesPercentage;
+                (x.ToYear + enrollmentYears) > tenure).FirstOrDefault().VestingRulesPercentage;
             }
         }
 
@@ -140,12 +141,12 @@ namespace Benefits_Backend.Service.Services
         }
 
         public decimal CalculateCurrentAvailableBalance(decimal currentContribution, decimal balanceOfLastRound,
-            decimal income , decimal withDrawal )
+            decimal income, decimal withDrawal)
         {
-           var proratedContribution=  CalculateProratedContribution(currentContribution);
+            var proratedContribution = CalculateProratedContribution(currentContribution);
 
-           var balance = (balanceOfLastRound + income + proratedContribution) - withDrawal;
-           return balance;
+            var balance = (balanceOfLastRound + income + proratedContribution) - withDrawal;
+            return balance;
         }
 
         public decimal CalculateProratedContribution(decimal contribution)
@@ -172,11 +173,11 @@ namespace Benefits_Backend.Service.Services
 
             return proratedContribution;
         }
-            
+
         public PensionRequest FillPensionObject(int userStaffId, SuccessFactor successFactorData, PensionRequest pension)
         {
             // pension.Id = userStaffId;
-          //  PensionRequest pension = new PensionRequest();
+            //  PensionRequest pension = new PensionRequest();
             MetlifeData metlifeData = metlifeDataRepository.GetMetlifeDataForUser(userStaffId);
 
             // metlife data
@@ -196,7 +197,7 @@ namespace Benefits_Backend.Service.Services
             pension.VestedBalance = ((pension.VestingPercent * pension.CurrentAvailableBalance) / 100);
             pension.MaxWithdrawalAmount = ((pension.VestedBalance * 65) / 100);
             //change the logic from constants to dynamic data
-           // pension.ProratedNewContribution = ((pension.CurrentyearContribution / 12) * 8);
+            // pension.ProratedNewContribution = ((pension.CurrentyearContribution / 12) * 8);
             pension.ProratedNewContribution = CalculateProratedContribution(metlifeData.Contribution);
 
             ////
@@ -230,16 +231,19 @@ namespace Benefits_Backend.Service.Services
             //If metlifedata last round withdrawal != zero then notEligible 
             MetlifeData metlifeData = metlifeDataRepository.GetMetlifeDataForUser(userStaffId);
 
-            if (metlifeData.Withdrawals != 0){
+            if (metlifeData.Withdrawals != 0)
+            {
                 return true;
-            } else {
+            }
+            else
+            {
                 return false;
             }
         }
 
         public List<PensionRequest> GetAllRequests()
         {
-          return  pensionRequestRepository.GetAllRequests();
+            return pensionRequestRepository.GetAllRequests();
         }
 
         public void RejectRequest(int staffId)
