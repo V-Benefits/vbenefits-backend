@@ -105,7 +105,6 @@ namespace Benefits_Backend.API.Controllers
 
             var successFactorObject = successFact.Where(sf => sf.StaffId == staffId).FirstOrDefault();
             var pensionRequest = pensionRequestService.CalculatePensionFormula(staffId, successFactorObject);
-
             return Ok(pensionRequest);
         }
 

@@ -64,9 +64,7 @@ namespace Benefits_Backend.API
 
             services.AddScoped<IMedicalRequestRepository, MedicalRequestRepository>();
             services.AddScoped<IMedicalRequestService, MedicalRequestService>();
-            services.AddScoped<IPensionAdminRepository, PensionAdminRepository>();
-            services.AddScoped<IPensionAdminService, PensionAdminService>();
-                
+            
             //services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             //services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

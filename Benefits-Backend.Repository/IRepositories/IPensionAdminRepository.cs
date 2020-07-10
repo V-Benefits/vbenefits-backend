@@ -7,6 +7,5 @@ namespace Benefits_Backend.Repository.IRepositories
 {
    public interface IPensionAdminRepository
     {
-        void UpdatePensionUserInterface(RoundDate firstRound , RoundDate secondRound, string pensionPolicyURL , string pensionPolicyFilePath);
     }
 }

@@ -7,18 +7,7 @@ using System.Text;
 
 namespace Benefits_Backend.Service.Services
 {
-    public class PensionAdminService : IPensionAdminService
+    public class PensionAdminService 
     {
-        private readonly IPensionAdminRepository pensionAdminRepository;
-
-        public PensionAdminService(IPensionAdminRepository pensionAdminRepository)
-        {
-            this.pensionAdminRepository = pensionAdminRepository;      
-        }
-
-        public void UpdatePensionUserInterface(RoundDate firstRound, RoundDate secondRound, string pensionPolicyURL, string pensionPolicyFilePath)
-        {
-            pensionAdminRepository.UpdatePensionUserInterface(firstRound, secondRound, pensionPolicyURL, pensionPolicyFilePath);
-        }
     }
 }

@@ -7,7 +7,5 @@ namespace Benefits_Backend.Service.IServices
 {
    public interface IPensionAdminService
     {
-        void UpdatePensionUserInterface(RoundDate firstRound, RoundDate secondRound, string pensionPolicyURL, string pensionPolicyFilePath);
-
     }
 }
