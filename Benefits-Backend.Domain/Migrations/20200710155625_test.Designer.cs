@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Benefits_Backend.Domain.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200709095311_seeddata")]
-    partial class seeddata
+    [Migration("20200710155625_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -419,6 +419,17 @@ namespace Benefits_Backend.Domain.Migrations
                             NewBalance = 237070m,
                             OldBalance = 168140m,
                             Withdrawals = 0m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CERT = 26018,
+                            Contribution = 89238m,
+                            Income = 9438m,
+                            Name = "Mohamed AlMokadem",
+                            NewBalance = 237070m,
+                            OldBalance = 168140m,
+                            Withdrawals = 0m
                         });
                 });
 
@@ -698,6 +709,40 @@ namespace Benefits_Backend.Domain.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SuccessFactor");
+                });
+
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.URLsLookup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("URLsLookups");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Key = "PensionPolicyURL",
+                            Value = ""
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Key = "PensionPolicyFilePath",
+                            Value = ""
+                        });
                 });
 
             modelBuilder.Entity("Benefits_Backend.Domain.Entities.VestingRules", b =>

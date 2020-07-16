@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Benefits_Backend.Domain.Migrations
 {
-    public partial class bdcreate : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -136,6 +136,20 @@ namespace Benefits_Backend.Domain.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SuccessFactor", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "URLsLookups",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Key = table.Column<string>(nullable: false),
+                    Value = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_URLsLookups", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -410,8 +424,22 @@ namespace Benefits_Backend.Domain.Migrations
                     { 5, "H", 24 },
                     { 4, "G", 24 },
                     { 3, "F", 3 },
-                    { 2, "E", 3 },
-                    { 1, "S", 0 }
+                    { 1, "S", 0 },
+                    { 2, "E", 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "RoundDates",
+                columns: new[] { "Id", "EndDate", "IsActive", "RoundName", "StartDate" },
+                values: new object[] { 1, new DateTime(2020, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), true, "July 2020", new DateTime(2020, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
+            migrationBuilder.InsertData(
+                table: "URLsLookups",
+                columns: new[] { "Id", "Key", "Value" },
+                values: new object[,]
+                {
+                    { 1, "PensionPolicyURL", "" },
+                    { 2, "PensionPolicyFilePath", "" }
                 });
 
             migrationBuilder.InsertData(
@@ -419,9 +447,9 @@ namespace Benefits_Backend.Domain.Migrations
                 columns: new[] { "Id", "FromYear", "ToYear", "VestingRulesPercentage" },
                 values: new object[,]
                 {
+                    { 3, 4, 5, 85 },
                     { 1, 2, 3, 50 },
                     { 2, 3, 4, 65 },
-                    { 3, 4, 5, 85 },
                     { 4, 5, 0, 100 }
                 });
 
@@ -433,7 +461,8 @@ namespace Benefits_Backend.Domain.Migrations
                     { 4, 3, 89238m, 9438m, "Ziad", 237070m, 168140m, 0m },
                     { 3, 2, 85299.64m, 4233.76m, "Mona", 142326.80m, 52793.40m, 0m },
                     { 2, 30, 15439.77m, 1277.134m, "Abdallah Fekry Kenawy, Abdullah Mahmoud", 33200.45m, 25658.55m, 9175m },
-                    { 1, 20, 85299.64m, 4233.757m, "MAHMOUD, ASHRAF", 142326.8m, 52793.4m, 0m }
+                    { 1, 20, 85299.64m, 4233.757m, "MAHMOUD, ASHRAF", 142326.8m, 52793.4m, 0m },
+                    { 5, 26018, 89238m, 9438m, "Mohamed AlMokadem", 237070m, 168140m, 0m }
                 });
 
             migrationBuilder.CreateIndex(
@@ -524,6 +553,9 @@ namespace Benefits_Backend.Domain.Migrations
 
             migrationBuilder.DropTable(
                 name: "SuccessFactor");
+
+            migrationBuilder.DropTable(
+                name: "URLsLookups");
 
             migrationBuilder.DropTable(
                 name: "VestingRules");

@@ -709,6 +709,40 @@ namespace Benefits_Backend.Domain.Migrations
                     b.ToTable("SuccessFactor");
                 });
 
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.URLsLookup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("URLsLookups");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Key = "PensionPolicyURL",
+                            Value = ""
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Key = "PensionPolicyFilePath",
+                            Value = ""
+                        });
+                });
+
             modelBuilder.Entity("Benefits_Backend.Domain.Entities.VestingRules", b =>
                 {
                     b.Property<int>("Id")
