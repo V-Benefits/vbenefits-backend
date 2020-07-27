@@ -37,8 +37,6 @@ namespace Benefits_Backend.API.Controllers
         public async Task<IActionResult> Post(EmployeeForAddDTO model)
         {
             var vesting = _vestingRulesService.GetVestingRules();
-
-
             var maxvalue = _appSettingService.GetPensionMaxPercent();
 
             Employee employee = mapper.Map<Employee>(model);

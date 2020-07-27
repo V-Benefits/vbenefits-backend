@@ -28,7 +28,21 @@ namespace Benefits_Backend.Repository.Repositories
         }
         public string GetEmployeeEmail(int staffId)
         {
-          return context.Employees.Where(e => e.StaffId == staffId.ToString()).FirstOrDefault().Email;
+            //   return context.Employees.Where(e => e.StaffId == staffId.ToString()).FirstOrDefault().Email;
+            return "";
+        }
+
+        public int GetEmployeeNumberOfUsedLines(int staffId)
+        {
+            var employee = this.context.Employees.Where(e => e.StaffId == staffId).FirstOrDefault();
+            //checked if employee equal null
+            return employee.NumberOfUsedLines;
+        }
+
+        public int GetEmployeeIdByStaffId(int staffId)
+        {
+            var employeeId =this.context.Employees.Where(e => e.StaffId == staffId).FirstOrDefault().Id;
+            return employeeId;
         }
     }
 }

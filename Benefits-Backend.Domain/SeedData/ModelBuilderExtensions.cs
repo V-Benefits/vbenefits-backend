@@ -14,7 +14,7 @@ namespace Benefits_Backend.Domain.SeedData
                     new Employee
                     {
                         Id = 1,
-                        StaffId = "26018",
+                        StaffId = 26018,
                         FullName = "Mohamed AlMokadem",
                         Email = "Mohamed.Almokadem@vodafone.com",
                         DateOfBirth = new DateTime(1991, 12, 20),
@@ -25,7 +25,7 @@ namespace Benefits_Backend.Domain.SeedData
                     new Employee
                     {
                         Id = 2,
-                        StaffId = "26782",
+                        StaffId = 26782,
                         FullName = "Hager Ahmed",
                         Email = "Hager@vodafone.com",
                         DateOfBirth = new DateTime(1993, 11, 1),
@@ -36,7 +36,7 @@ namespace Benefits_Backend.Domain.SeedData
                     new Employee
                     {
                         Id = 3,
-                        StaffId = "28896",
+                        StaffId = 28896,
                         FullName = "Mona Fawzy",
                         Email = "Mona@vodafone.com",
                         DateOfBirth = new DateTime(1992, 6, 5),
@@ -131,32 +131,32 @@ namespace Benefits_Backend.Domain.SeedData
                  Key = "PensionPolicyFilePath",
                  Value = ""
              }
-            ) ;
+            );
 
-           modelBuilder.Entity<MetlifeData>().HasData(
-                new MetlifeData
-                {
-                    Id = 1,
-                    Name = "MAHMOUD, ASHRAF",
-                    CERT = 20,
-                    OldBalance = 52793.4m,
-                    Contribution = 85299.64m,
-                    Income = 4233.757m,
-                    Withdrawals = 0,
-                    NewBalance = 142326.8m
-                },
-                new MetlifeData
-                {
-                    Id = 2,
-                    Name = "Abdallah Fekry Kenawy, Abdullah Mahmoud",
-                    CERT = 30,
-                    OldBalance = 25658.55m,
-                    Contribution = 15439.77m,
-                    Income = 1277.134m,
-                    Withdrawals = 9175,
-                    NewBalance = 33200.45m
-                },
-                new MetlifeData
+            modelBuilder.Entity<MetlifeData>().HasData(
+                 new MetlifeData
+                 {
+                     Id = 1,
+                     Name = "MAHMOUD, ASHRAF",
+                     CERT = 20,
+                     OldBalance = 52793.4m,
+                     Contribution = 85299.64m,
+                     Income = 4233.757m,
+                     Withdrawals = 0,
+                     NewBalance = 142326.8m
+                 },
+                 new MetlifeData
+                 {
+                     Id = 2,
+                     Name = "Abdallah Fekry Kenawy, Abdullah Mahmoud",
+                     CERT = 30,
+                     OldBalance = 25658.55m,
+                     Contribution = 15439.77m,
+                     Income = 1277.134m,
+                     Withdrawals = 9175,
+                     NewBalance = 33200.45m
+                 },
+                 new MetlifeData
                  {
                      Id = 3,
                      Name = "Mona",
@@ -167,28 +167,29 @@ namespace Benefits_Backend.Domain.SeedData
                      Withdrawals = 0,
                      NewBalance = 142326.80m
                  },
-                  new MetlifeData
-                  {
-                      Id = 4,
-                      Name = "Ziad",
-                      CERT = 3,
-                      OldBalance = 168140m,
-                      Contribution = 89238m,
-                      Income = 9438m,
-                      Withdrawals = 0,
-                      NewBalance = 237070m
-                  },
-                  new MetlifeData {
-                      Id = 5,
-                      Name = "Mohamed AlMokadem",
-                      CERT = 26018,
-                      OldBalance = 168140m,
-                      Contribution = 89238m,
-                      Income = 9438m,
-                      Withdrawals = 0,
-                      NewBalance = 237070m
-                  }
-            );
+                   new MetlifeData
+                   {
+                       Id = 4,
+                       Name = "Ziad",
+                       CERT = 3,
+                       OldBalance = 168140m,
+                       Contribution = 89238m,
+                       Income = 9438m,
+                       Withdrawals = 0,
+                       NewBalance = 237070m
+                   },
+                   new MetlifeData
+                   {
+                       Id = 5,
+                       Name = "Mohamed AlMokadem",
+                       CERT = 26018,
+                       OldBalance = 168140m,
+                       Contribution = 89238m,
+                       Income = 9438m,
+                       Withdrawals = 0,
+                       NewBalance = 237070m
+                   }
+             );
 
             modelBuilder.Entity<RoundDate>().HasData(
                 new RoundDate
@@ -200,7 +201,112 @@ namespace Benefits_Backend.Domain.SeedData
                     RoundName = "July 2020"
                 });
 
+            modelBuilder.Entity<RequestForLookup>().HasData(
+                new RequestForLookup
+                {
+                    Id = 1,
+                    Value = "Myself"
+                },
+                new RequestForLookup
+                {
+                    Id = 2,
+                    Value = "Family or friends ( deductible from salary)"
+                });
 
+            modelBuilder.Entity<RatePlanRules>().HasData(
+             new RatePlanRules
+             {
+                 Id = 1,
+                 Number = 1,
+                 Band = "Contractor",
+                 RatePlan = "Flex 65"
+             },
+             new RatePlanRules
+              {
+                 Id = 2,
+                 Number = 2,
+                 Band = "G2",
+                 RatePlan = "Red 150"
+             },
+             new RatePlanRules
+             {
+                 Id = 3,
+                 Number = 2,
+                 Band = "H1",
+                 RatePlan = "Red 150"
+             },
+            new RatePlanRules
+            {
+                Id = 4,
+                Number = 2,
+                Band = "H2",
+                RatePlan = "Red 150"
+            },
+            new RatePlanRules
+            {
+                Id = 5,
+                Number = 3,
+                Band = "G1",
+                RatePlan = "Red 300"
+            },
+            new RatePlanRules
+            {
+                Id = 6,
+                Number = 4,
+                Band = "F",
+                RatePlan = "Red 500"
+            },
+            new RatePlanRules
+            {
+                Id = 7,
+                Number = 5,
+                Band = "E",
+                RatePlan = "Red 800"
+            });
+
+            modelBuilder.Entity<RequestTypeLookup>().HasData(
+            new RequestTypeLookup
+            {
+                Id = 1,
+                Value = "New Line",
+                RequestForId = 2 
+            },
+            new RequestTypeLookup
+            {
+                Id = 2,
+                Value = "New Line",
+                RequestForId = 1
+            },
+            new RequestTypeLookup
+            {
+                Id = 3,
+                Value = "New Data SIM",
+                RequestForId = 1
+            },
+            new RequestTypeLookup
+            {
+                Id = 4,
+                Value = "Change Line Rate Plan",
+                RequestForId = 1
+            },
+            new RequestTypeLookup
+            {
+                Id = 5,
+                Value = "Recharge Your Line",
+                RequestForId = 1
+            }, 
+            new RequestTypeLookup
+            {
+                Id = 6,
+                Value = "Change Your Data SIM",
+                RequestForId = 1
+            },
+            new RequestTypeLookup
+            {
+                Id = 7,
+                Value = "Recharge Your Data SIM",
+                RequestForId = 1
+            });
         }
     }
 }

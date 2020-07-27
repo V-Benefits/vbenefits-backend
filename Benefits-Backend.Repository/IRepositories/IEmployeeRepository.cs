@@ -8,5 +8,7 @@ namespace Benefits_Backend.Repository.IRepositories
         Task<Employee> Add(Employee employee);
         Employee Edit(Employee employee);
         string GetEmployeeEmail(int staffId);
+        int GetEmployeeNumberOfUsedLines(int staffId);
+        int GetEmployeeIdByStaffId(int staffId);
     }
 }

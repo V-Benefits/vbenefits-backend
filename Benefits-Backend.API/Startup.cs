@@ -66,7 +66,15 @@ namespace Benefits_Backend.API
             services.AddScoped<IMedicalRequestService, MedicalRequestService>();
             services.AddScoped<IPensionAdminRepository, PensionAdminRepository>();
             services.AddScoped<IPensionAdminService, PensionAdminService>();
-                
+
+            services.AddScoped<ISIMCardRequestService, SIMCardRequestService>();
+            services.AddScoped<IRatePlanRulesService, RatePlanRulesService>();
+
+            services.AddScoped<IRatePlanRulesRepository, RatePlanRulesRepository>();
+            services.AddScoped<ISuccessFactorRepository, SuccessFactorRepository>();
+            services.AddScoped<ISIMCardRequestRepository, SIMCardRequestRepository>();
+
+            
             //services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             //services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

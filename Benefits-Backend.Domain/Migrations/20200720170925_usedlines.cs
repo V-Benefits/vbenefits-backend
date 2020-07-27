@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Benefits_Backend.Domain.Migrations
 {
-    public partial class test : Migration
+    public partial class usedlines : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,13 +29,14 @@ namespace Benefits_Backend.Domain.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    StaffId = table.Column<string>(nullable: false),
+                    StaffId = table.Column<int>(nullable: false),
                     FullName = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "date", nullable: false),
                     NationalId = table.Column<string>(nullable: true),
                     MobileNumber = table.Column<string>(nullable: true),
-                    LandlineNumber = table.Column<string>(nullable: true)
+                    LandlineNumber = table.Column<string>(nullable: true),
+                    NumberOfUsedLines = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -101,6 +102,34 @@ namespace Benefits_Backend.Domain.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PensionEnrollmentRules", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RatePlanRules",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Band = table.Column<string>(nullable: false),
+                    RatePlan = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RatePlanRules", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RequestForLookups",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Key = table.Column<string>(nullable: false),
+                    Value = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RequestForLookups", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -203,6 +232,35 @@ namespace Benefits_Backend.Domain.Migrations
                         principalTable: "Employees",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BusinessLineRequests",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    StaffId = table.Column<int>(nullable: false),
+                    RequestedById = table.Column<int>(nullable: false),
+                    RequestedOn = table.Column<DateTime>(nullable: false),
+                    RequestFor = table.Column<string>(nullable: true),
+                    RequestType = table.Column<string>(nullable: true),
+                    RatePlanType = table.Column<string>(nullable: true),
+                    VodafoneMobileNumber = table.Column<string>(nullable: true),
+                    NationalIdImage = table.Column<string>(nullable: true),
+                    Comment = table.Column<string>(nullable: true),
+                    SimSerialNumber = table.Column<string>(nullable: true),
+                    DataSimPlan = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BusinessLineRequests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BusinessLineRequests_Employees_RequestedById",
+                        column: x => x.RequestedById,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -401,6 +459,48 @@ namespace Benefits_Backend.Domain.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RequestTypeLookup",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Key = table.Column<string>(nullable: true),
+                    Value = table.Column<string>(nullable: true),
+                    RequestForId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RequestTypeLookup", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RequestTypeLookup_RequestForLookups_RequestForId",
+                        column: x => x.RequestForId,
+                        principalTable: "RequestForLookups",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RatePlanTypeLookups",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Key = table.Column<string>(nullable: false),
+                    Value = table.Column<string>(nullable: false),
+                    RequestTypeId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RatePlanTypeLookups", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RatePlanTypeLookups_RequestTypeLookup_RequestTypeId",
+                        column: x => x.RequestTypeId,
+                        principalTable: "RequestTypeLookup",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AppSettings",
                 columns: new[] { "Id", "Key", "Name", "Value" },
@@ -408,12 +508,12 @@ namespace Benefits_Backend.Domain.Migrations
 
             migrationBuilder.InsertData(
                 table: "Employees",
-                columns: new[] { "Id", "DateOfBirth", "Email", "FullName", "LandlineNumber", "MobileNumber", "NationalId", "StaffId" },
+                columns: new[] { "Id", "DateOfBirth", "Email", "FullName", "LandlineNumber", "MobileNumber", "NationalId", "NumberOfUsedLines", "StaffId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(1991, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Mohamed.Almokadem@vodafone.com", "Mohamed AlMokadem", "00226799126", "01015925905", "0000200230979239", "26018" },
-                    { 2, new DateTime(1993, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Hager@vodafone.com", "Hager Ahmed", "00226799126", "010133344555", "0000200230979239", "26782" },
-                    { 3, new DateTime(1992, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Mona@vodafone.com", "Mona Fawzy", "00224456126", "010133234588", "0000200230559449", "28896" }
+                    { 1, new DateTime(1991, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Mohamed.Almokadem@vodafone.com", "Mohamed AlMokadem", "00226799126", "01015925905", "0000200230979239", 0, 26018 },
+                    { 2, new DateTime(1993, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Hager@vodafone.com", "Hager Ahmed", "00226799126", "010133344555", "0000200230979239", 0, 26782 },
+                    { 3, new DateTime(1992, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Mona@vodafone.com", "Mona Fawzy", "00224456126", "010133234588", "0000200230559449", 0, 28896 }
                 });
 
             migrationBuilder.InsertData(
@@ -481,6 +581,11 @@ namespace Benefits_Backend.Domain.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_BusinessLineRequests_RequestedById",
+                table: "BusinessLineRequests",
+                column: "RequestedById");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_medicalCardRequestForEmployees_RequestedById",
                 table: "medicalCardRequestForEmployees",
                 column: "RequestedById");
@@ -511,6 +616,16 @@ namespace Benefits_Backend.Domain.Migrations
                 column: "RequestById");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RatePlanTypeLookups_RequestTypeId",
+                table: "RatePlanTypeLookups",
+                column: "RequestTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RequestTypeLookup_RequestForId",
+                table: "RequestTypeLookup",
+                column: "RequestForId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_VestingRulesHistories_UpdatedById",
                 table: "VestingRulesHistories",
                 column: "UpdatedById");
@@ -520,6 +635,9 @@ namespace Benefits_Backend.Domain.Migrations
         {
             migrationBuilder.DropTable(
                 name: "AppSeetingHistory");
+
+            migrationBuilder.DropTable(
+                name: "BusinessLineRequests");
 
             migrationBuilder.DropTable(
                 name: "historicalMetlifeData");
@@ -549,6 +667,12 @@ namespace Benefits_Backend.Domain.Migrations
                 name: "PhoneProgramRequests");
 
             migrationBuilder.DropTable(
+                name: "RatePlanRules");
+
+            migrationBuilder.DropTable(
+                name: "RatePlanTypeLookups");
+
+            migrationBuilder.DropTable(
                 name: "RoundDates");
 
             migrationBuilder.DropTable(
@@ -567,7 +691,13 @@ namespace Benefits_Backend.Domain.Migrations
                 name: "AppSettings");
 
             migrationBuilder.DropTable(
+                name: "RequestTypeLookup");
+
+            migrationBuilder.DropTable(
                 name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "RequestForLookups");
         }
     }
 }

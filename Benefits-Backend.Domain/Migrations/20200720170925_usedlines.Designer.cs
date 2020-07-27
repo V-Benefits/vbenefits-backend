@@ -3,15 +3,17 @@ using System;
 using Benefits_Backend.Domain.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Benefits_Backend.Domain.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20200720170925_usedlines")]
+    partial class usedlines
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,6 +98,53 @@ namespace Benefits_Backend.Domain.Migrations
                             Name = "Max Percent Withdrawal",
                             Value = "65"
                         });
+                });
+
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.BusinessLineRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DataSimPlan")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NationalIdImage")
+                        .HasColumnType("text");
+
+                    b.Property<string>("RatePlanType")
+                        .HasColumnType("text");
+
+                    b.Property<string>("RequestFor")
+                        .HasColumnType("text");
+
+                    b.Property<string>("RequestType")
+                        .HasColumnType("text");
+
+                    b.Property<int>("RequestedById")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("RequestedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("SimSerialNumber")
+                        .HasColumnType("text");
+
+                    b.Property<int>("StaffId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("VodafoneMobileNumber")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RequestedById");
+
+                    b.ToTable("BusinessLineRequests");
                 });
 
             modelBuilder.Entity("Benefits_Backend.Domain.Entities.Employee", b =>
@@ -657,9 +706,6 @@ namespace Benefits_Backend.Domain.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Number")
-                        .HasColumnType("integer");
-
                     b.Property<string>("RatePlan")
                         .IsRequired()
                         .HasColumnType("text");
@@ -667,57 +713,6 @@ namespace Benefits_Backend.Domain.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RatePlanRules");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Band = "E",
-                            Number = 5,
-                            RatePlan = "Red 800"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Band = "F",
-                            Number = 4,
-                            RatePlan = "Red 500"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Band = "G2",
-                            Number = 2,
-                            RatePlan = "Red 150"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Band = "G1",
-                            Number = 3,
-                            RatePlan = "Red 300"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Band = "H1",
-                            Number = 2,
-                            RatePlan = "Red 150"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Band = "H2",
-                            Number = 2,
-                            RatePlan = "Red 150"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Band = "Contractor",
-                            Number = 1,
-                            RatePlan = "Flex 65"
-                        });
                 });
 
             modelBuilder.Entity("Benefits_Backend.Domain.Entities.RatePlanTypeLookup", b =>
@@ -752,6 +747,10 @@ namespace Benefits_Backend.Domain.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Value")
                         .IsRequired()
                         .HasColumnType("text");
@@ -759,18 +758,6 @@ namespace Benefits_Backend.Domain.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RequestForLookups");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Value = "Myself"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Value = "Family or friends ( deductible from salary)"
-                        });
                 });
 
             modelBuilder.Entity("Benefits_Backend.Domain.Entities.RequestTypeLookup", b =>
@@ -779,6 +766,9 @@ namespace Benefits_Backend.Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Key")
+                        .HasColumnType("text");
 
                     b.Property<int>("RequestForId")
                         .HasColumnType("integer");
@@ -790,51 +780,7 @@ namespace Benefits_Backend.Domain.Migrations
 
                     b.HasIndex("RequestForId");
 
-                    b.ToTable("RequestTypeLookups");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            RequestForId = 2,
-                            Value = "New Line"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            RequestForId = 1,
-                            Value = "New Line"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            RequestForId = 1,
-                            Value = "New Data SIM"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            RequestForId = 1,
-                            Value = "Change Line Rate Plan"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            RequestForId = 1,
-                            Value = "Recharge Your Line"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            RequestForId = 1,
-                            Value = "Change Your Data SIM"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            RequestForId = 1,
-                            Value = "Recharge Your Data SIM"
-                        });
+                    b.ToTable("RequestTypeLookup");
                 });
 
             modelBuilder.Entity("Benefits_Backend.Domain.Entities.RoundDate", b =>
@@ -872,57 +818,7 @@ namespace Benefits_Backend.Domain.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Benefits_Backend.Domain.Entities.SIMCardRequest", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("text");
-
-                    b.Property<string>("DataSimPlan")
-                        .HasColumnType("text");
-
-                    b.Property<string>("FamilyOrFriendFirstName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("MobileNumber")
-                        .HasColumnType("text");
-
-                    b.Property<string>("NationalIdImage")
-                        .HasColumnType("text");
-
-                    b.Property<string>("RatePlan")
-                        .HasColumnType("text");
-
-                    b.Property<string>("RequestFor")
-                        .HasColumnType("text");
-
-                    b.Property<string>("RequestType")
-                        .HasColumnType("text");
-
-                    b.Property<int>("RequestedById")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("RequestedOn")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("SimSerialNumber")
-                        .HasColumnType("text");
-
-                    b.Property<int>("StaffId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RequestedById");
-
-                    b.ToTable("SIMCardRequests");
-                });
-
-            modelBuilder.Entity("Benefits_Backend.Domain.Entities.SuccessFactor", b =>
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1097,6 +993,15 @@ namespace Benefits_Backend.Domain.Migrations
                         .HasForeignKey("EmployeeId");
                 });
 
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.BusinessLineRequest", b =>
+                {
+                    b.HasOne("Benefits_Backend.Domain.Entities.Employee", "RequestedBy")
+                        .WithMany()
+                        .HasForeignKey("RequestedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Benefits_Backend.Domain.Entities.MedicalCardRequest", b =>
                 {
                     b.HasOne("Benefits_Backend.Domain.Entities.Employee", "RequestedBy")
@@ -1165,15 +1070,6 @@ namespace Benefits_Backend.Domain.Migrations
                     b.HasOne("Benefits_Backend.Domain.Entities.RequestForLookup", "RequestFor")
                         .WithMany("RequestTypeLookups")
                         .HasForeignKey("RequestForId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Benefits_Backend.Domain.Entities.SIMCardRequest", b =>
-                {
-                    b.HasOne("Benefits_Backend.Domain.Entities.Employee", "RequestedBy")
-                        .WithMany()
-                        .HasForeignKey("RequestedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

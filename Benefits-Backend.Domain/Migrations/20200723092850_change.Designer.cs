@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Benefits_Backend.Domain.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200710155625_test")]
-    partial class test
+    [Migration("20200723092850_change")]
+    partial class change
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -125,9 +125,11 @@ namespace Benefits_Backend.Domain.Migrations
                     b.Property<string>("NationalId")
                         .HasColumnType("text");
 
-                    b.Property<string>("StaffId")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("NumberOfUsedLines")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("StaffId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -143,7 +145,8 @@ namespace Benefits_Backend.Domain.Migrations
                             LandlineNumber = "00226799126",
                             MobileNumber = "01015925905",
                             NationalId = "0000200230979239",
-                            StaffId = "26018"
+                            NumberOfUsedLines = 0,
+                            StaffId = 26018
                         },
                         new
                         {
@@ -154,7 +157,8 @@ namespace Benefits_Backend.Domain.Migrations
                             LandlineNumber = "00226799126",
                             MobileNumber = "010133344555",
                             NationalId = "0000200230979239",
-                            StaffId = "26782"
+                            NumberOfUsedLines = 0,
+                            StaffId = 26782
                         },
                         new
                         {
@@ -165,7 +169,8 @@ namespace Benefits_Backend.Domain.Migrations
                             LandlineNumber = "00224456126",
                             MobileNumber = "010133234588",
                             NationalId = "0000200230559449",
-                            StaffId = "28896"
+                            NumberOfUsedLines = 0,
+                            StaffId = 28896
                         });
                 });
 
@@ -643,6 +648,187 @@ namespace Benefits_Backend.Domain.Migrations
                     b.ToTable("PhoneProgramRequests");
                 });
 
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.RatePlanRules", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Band")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("RatePlan")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RatePlanRules");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Band = "E",
+                            RatePlan = "Red 800"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Band = "F",
+                            RatePlan = "Red 500"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Band = "G2",
+                            RatePlan = "Red 150"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Band = "G1",
+                            RatePlan = " Red 500"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Band = "H1",
+                            RatePlan = "Red 150"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Band = "H2",
+                            RatePlan = "Red 150"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Band = "Contractor",
+                            RatePlan = "Flex 65"
+                        });
+                });
+
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.RatePlanTypeLookup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("RequestTypeId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RequestTypeId");
+
+                    b.ToTable("RatePlanTypeLookups");
+                });
+
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.RequestForLookup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RequestForLookups");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Value = "Myself"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Value = "Family or friends ( deductible from salary)"
+                        });
+                });
+
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.RequestTypeLookup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("RequestForId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RequestForId");
+
+                    b.ToTable("RequestTypeLookups");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            RequestForId = 2,
+                            Value = "New Line"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            RequestForId = 1,
+                            Value = "New Line"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            RequestForId = 1,
+                            Value = "New Data SIM"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            RequestForId = 1,
+                            Value = "Change Line Rate Plan"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            RequestForId = 1,
+                            Value = "Recharge Your Line"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            RequestForId = 1,
+                            Value = "Change Your Data SIM"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            RequestForId = 1,
+                            Value = "Recharge Your Data SIM"
+                        });
+                });
+
             modelBuilder.Entity("Benefits_Backend.Domain.Entities.RoundDate", b =>
                 {
                     b.Property<int>("Id")
@@ -676,6 +862,53 @@ namespace Benefits_Backend.Domain.Migrations
                             RoundName = "July 2020",
                             StartDate = new DateTime(2020, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
+                });
+
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.SIMCardRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DataSimPlan")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NationalIdImage")
+                        .HasColumnType("text");
+
+                    b.Property<string>("RatePlanType")
+                        .HasColumnType("text");
+
+                    b.Property<string>("RequestFor")
+                        .HasColumnType("text");
+
+                    b.Property<string>("RequestType")
+                        .HasColumnType("text");
+
+                    b.Property<int>("RequestedById")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("RequestedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("SimSerialNumber")
+                        .HasColumnType("text");
+
+                    b.Property<int>("StaffId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("VodafoneMobileNumber")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RequestedById");
+
+                    b.ToTable("SIMCardRequests");
                 });
 
             modelBuilder.Entity("Benefits_Backend.Domain.Entities.SuccessFactor", b =>
@@ -903,6 +1136,33 @@ namespace Benefits_Backend.Domain.Migrations
                     b.HasOne("Benefits_Backend.Domain.Entities.Employee", "RequestBy")
                         .WithMany()
                         .HasForeignKey("RequestById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.RatePlanTypeLookup", b =>
+                {
+                    b.HasOne("Benefits_Backend.Domain.Entities.RequestTypeLookup", "RequestType")
+                        .WithMany()
+                        .HasForeignKey("RequestTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.RequestTypeLookup", b =>
+                {
+                    b.HasOne("Benefits_Backend.Domain.Entities.RequestForLookup", "RequestFor")
+                        .WithMany("RequestTypeLookups")
+                        .HasForeignKey("RequestForId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Benefits_Backend.Domain.Entities.SIMCardRequest", b =>
+                {
+                    b.HasOne("Benefits_Backend.Domain.Entities.Employee", "RequestedBy")
+                        .WithMany()
+                        .HasForeignKey("RequestedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

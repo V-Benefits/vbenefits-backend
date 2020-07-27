@@ -31,6 +31,11 @@ namespace Benefits_Backend.Domain.Context
             new AppSettingHistoriesMap(modelBuilder.Entity<AppSeetingHistory>());
             new URLsLookupMap(modelBuilder.Entity<URLsLookup>());
 
+            new RatePlanRulesMap(modelBuilder.Entity<RatePlanRules>());
+            new RequestForLookupMap(modelBuilder.Entity<RequestForLookup>());
+            new RatePlanTypeLookupMap(modelBuilder.Entity<RatePlanTypeLookup>());
+            new SIMCardRequestMap(modelBuilder.Entity<SIMCardRequest>());
+
             modelBuilder.Seed();
         }
         public DbSet<Employee> Employees { get; set; }
@@ -49,6 +54,11 @@ namespace Benefits_Backend.Domain.Context
         public DbSet<MedicalCardRequestForSpouse> medicalCardRequestForSpouses  { get; set; }
         public DbSet<MedicalCardRequest> medicalCardRequests { get; set; }
         public DbSet<URLsLookup> URLsLookups { get; set; }
+        public DbSet<RatePlanRules> RatePlanRules { get; set; }
+        public DbSet<RequestForLookup> RequestForLookups { get; set; }
+        public DbSet<RatePlanTypeLookup> RatePlanTypeLookups { get; set; }
+        public DbSet<SIMCardRequest> SIMCardRequests { get; set; }
+        public DbSet<RequestTypeLookup> RequestTypeLookups { get; set; }
 
     }
 
