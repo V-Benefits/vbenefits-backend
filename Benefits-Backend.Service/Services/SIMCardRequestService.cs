@@ -56,6 +56,7 @@ namespace Benefits_Backend.Service.Services
 
         public async Task CreateSimCardRequest(SIMCardRequest simCardRequest)
         {
+
            await _simCardRequestRepository.Add(simCardRequest);
            await _unitOfWork.Commit();
         }

@@ -41,7 +41,10 @@ namespace Benefits_Backend.Repository.Repositories
 
         public int GetEmployeeIdByStaffId(int staffId)
         {
-            var employeeId =this.context.Employees.Where(e => e.StaffId == staffId).FirstOrDefault().Id;
+            var employee = this.context.Employees.Where(e => e.StaffId == staffId).FirstOrDefault();
+            employee.NumberOfUsedLines = employee.NumberOfUsedLines + 1;
+
+            var employeeId =this.context.Employees.Where(e => e.StaffId == staffId).Select(e=> e.Id).FirstOrDefault();
             return employeeId;
         }
     }
