@@ -33,6 +33,12 @@ namespace Benefits_Backend.Repository.Repositories
 
         public async Task Add(SIMCardRequest simCardRequest)
         {
+            if (simCardRequest.RequestType == "New Line")
+                simCardRequest.Status = "Approved";
+
+            if(simCardRequest.RequestType == "Change Line Rate Plan")
+                simCardRequest.Status = "Pending Approval";
+
             await _context.SIMCardRequests.AddAsync(simCardRequest);
         }
 

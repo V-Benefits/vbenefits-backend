@@ -20,5 +20,6 @@ namespace Benefits_Backend.Domain.Entities
         public string Comment { get; set; }
         public string SimSerialNumber { get; set; }
         public string DataSimPlan { get; set; }
+        public string Status { get; set; }
     }
 }
