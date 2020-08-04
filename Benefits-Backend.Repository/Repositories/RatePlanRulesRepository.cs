@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Benefits_Backend.Repository.Repositories
 {
-   public class RatePlanRulesRepository : IRatePlanRulesRepository
+    public class RatePlanRulesRepository : IRatePlanRulesRepository
     {
         private readonly ApplicationContext _context;
 
@@ -27,14 +27,21 @@ namespace Benefits_Backend.Repository.Repositories
 
         public string GetEmployeeRatePlan(string band)
         {
-            var employeeRatePlan =  _context.RatePlanRules.Where(r => r.Band == band).FirstOrDefault();
+            var employeeRatePlan = _context.RatePlanRules.Where(r => r.Band == band).FirstOrDefault();
             return employeeRatePlan.RatePlan;
         }
 
-        public List<string> GetRatePlans(string band)
+        public List<string> GetRatePlans(string band, string requestType)
         {
-            var defaultRatePlan = _context.RatePlanRules.Where(r => r.Band == band).FirstOrDefault();
-            var ratePlans = _context.RatePlanRules.Where(r => r.Band == band || r.Number > defaultRatePlan.Number).Select(r => r.RatePlan).ToList();
+            var defaultRatePlan = new RatePlanRules();
+
+            if (requestType == "New Data SIM" || requestType == "Change Your Data SIM")
+                defaultRatePlan = _context.RatePlanRules.Where(r => r.Band == band && r.BundleType == "Employee Data").FirstOrDefault();
+
+            else
+                defaultRatePlan = _context.RatePlanRules.Where(r => r.Band == band && r.BundleType == "Employee Line").FirstOrDefault();
+
+            var ratePlans = _context.RatePlanRules.Where(r => (r.Band == band || r.Number > defaultRatePlan.Number) &&  r.BundleType == defaultRatePlan.BundleType).Select(r => r.RatePlan).ToList();
             return ratePlans;
         }
     }

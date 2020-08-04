@@ -63,19 +63,24 @@ namespace Benefits_Backend.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(SimCardRequestForAddDto model)
         {
-            var employeeId = _employeeService.GetEmployeeIdByStaffId(model.StaffId);
+            var employee = _employeeService.GetEmployeeByStaffId(model.StaffId);
+
+            if(model.RequestFor == "Family or friends ( deductible from salary)")
+            {
+                employee.NumberOfUsedLines = employee.NumberOfUsedLines + 1;
+            }
 
             SIMCardRequest simCardRequest = _mapper.Map<SIMCardRequest>(model);
-            simCardRequest.RequestedById = employeeId;
+            simCardRequest.RequestedById = employee.Id;
 
             await  _simCardRequestService.CreateSimCardRequest(simCardRequest);
             return Ok();
         }
 
-        [HttpGet("RatePlans/{band}")]
-        public IActionResult GetRatePlans(string band)
+        [HttpGet("RatePlans/{band}/{requestType}")]
+        public IActionResult GetRatePlans(string band, string requestType)
         {
-           var ratePlans=  _simCardRequestService.GetRatePlansForBand(band);
+           var ratePlans=  _simCardRequestService.GetRatePlansForBand(band, requestType);
             return Ok(ratePlans);
         }
     }

@@ -7,5 +7,6 @@ namespace Benefits_Backend.Service.IServices
         Employee CreateEmployee(Employee employee);
         Employee UpdateEmployee(Employee employee);
         int GetEmployeeIdByStaffId(int staffId);
+        Employee GetEmployeeByStaffId(int staffId);
     }
 }

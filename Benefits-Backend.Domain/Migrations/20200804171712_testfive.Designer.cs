@@ -3,15 +3,17 @@ using System;
 using Benefits_Backend.Domain.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Benefits_Backend.Domain.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20200804171712_testfive")]
+    partial class testfive
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -733,7 +735,7 @@ namespace Benefits_Backend.Domain.Migrations
                             Id = 8,
                             Band = "H",
                             BundleType = "Employee Data",
-                            Number = 1,
+                            Number = 4,
                             RatePlan = "20 GB"
                         },
                         new
@@ -762,7 +764,7 @@ namespace Benefits_Backend.Domain.Migrations
                         },
                         new
                         {
-                            Id = 12,
+                            Id = 14,
                             Band = "E",
                             BundleType = "Employee Data",
                             Number = 2,

@@ -35,9 +35,8 @@ namespace Benefits_Backend.Repository.Repositories
         {
             if (simCardRequest.RequestType == "New Line")
                 simCardRequest.Status = "Approved";
-
-            if(simCardRequest.RequestType == "Change Line Rate Plan")
-                simCardRequest.Status = "Pending Approval";
+            else
+                simCardRequest.Status = "Pending Approval";             
 
             await _context.SIMCardRequests.AddAsync(simCardRequest);
         }

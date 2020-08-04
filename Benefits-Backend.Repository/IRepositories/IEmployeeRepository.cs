@@ -10,5 +10,6 @@ namespace Benefits_Backend.Repository.IRepositories
         string GetEmployeeEmail(int staffId);
         int GetEmployeeNumberOfUsedLines(int staffId);
         int GetEmployeeIdByStaffId(int staffId);
+        Employee GetEmployeeByStaffId(int staffId);
     }
 }

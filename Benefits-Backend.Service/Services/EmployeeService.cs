@@ -30,5 +30,11 @@ namespace Benefits_Backend.Service.Services
             var employeeId = employeeRepository.GetEmployeeIdByStaffId(staffId);
             return employeeId;
         }
+
+        public Employee GetEmployeeByStaffId(int staffId)
+        {
+            var employee = employeeRepository.GetEmployeeByStaffId(staffId);
+            return employee;
+        }
     }
 }

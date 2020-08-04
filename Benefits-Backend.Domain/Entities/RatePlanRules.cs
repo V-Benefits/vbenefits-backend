@@ -10,5 +10,6 @@ namespace Benefits_Backend.Domain.Entities
         public int Number { get; set; }
         public string Band { get; set; }
         public string RatePlan { get; set; }
+        public string BundleType { get; set; }
     }
 }

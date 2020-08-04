@@ -219,49 +219,96 @@ namespace Benefits_Backend.Domain.SeedData
                  Id = 1,
                  Number = 1,
                  Band = "Contractor",
-                 RatePlan = "Flex 65"
+                 RatePlan = "Flex 65",
+                 BundleType ="Employee Line"
              },
              new RatePlanRules
-              {
+             {
                  Id = 2,
                  Number = 2,
                  Band = "G2",
-                 RatePlan = "Red 150"
+                 RatePlan = "Red 150",
+                 BundleType = "Employee Line"
              },
              new RatePlanRules
              {
                  Id = 3,
                  Number = 2,
                  Band = "H1",
-                 RatePlan = "Red 150"
+                 RatePlan = "Red 150",
+                 BundleType = "Employee Line"
              },
             new RatePlanRules
             {
                 Id = 4,
                 Number = 2,
                 Band = "H2",
-                RatePlan = "Red 150"
+                RatePlan = "Red 150",
+                BundleType = "Employee Line"
             },
             new RatePlanRules
             {
                 Id = 5,
                 Number = 3,
                 Band = "G1",
-                RatePlan = "Red 300"
+                RatePlan = "Red 300",
+                BundleType = "Employee Line"
             },
             new RatePlanRules
             {
                 Id = 6,
                 Number = 4,
                 Band = "F",
-                RatePlan = "Red 500"
+                RatePlan = "Red 500",
+                BundleType = "Employee Line"
             },
             new RatePlanRules
             {
                 Id = 7,
                 Number = 5,
                 Band = "E",
-                RatePlan = "Red 800"
+                RatePlan = "Red 800",
+                BundleType = "Employee Line"
+            },
+            new RatePlanRules
+            {
+                Id = 8,
+                Number = 1,
+                Band = "H",
+                RatePlan = "20 GB",
+                BundleType = "Employee Data"
+            },
+            new RatePlanRules
+            {
+                Id = 9,
+                Number = 1,
+                Band = "G",
+                RatePlan = "20 GB",
+                BundleType = "Employee Data"
+            },
+            new RatePlanRules
+            {
+                Id = 10,
+                Number = 1,
+                Band = "Contractors",
+                RatePlan = "20 GB",
+                BundleType = "Employee Data"
+            },
+            new RatePlanRules
+            {
+                Id = 11,
+                Number = 2,
+                Band = "F",
+                RatePlan = "40 GB",
+                BundleType = "Employee Data"
+            },
+            new RatePlanRules
+            {
+                Id = 12,
+                Number = 2,
+                Band = "E",
+                RatePlan = "40 GB",
+                BundleType = "Employee Data"
             });
 
             modelBuilder.Entity<RequestTypeLookup>().HasData(

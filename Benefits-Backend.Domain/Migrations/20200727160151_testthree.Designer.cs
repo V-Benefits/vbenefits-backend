@@ -3,15 +3,17 @@ using System;
 using Benefits_Backend.Domain.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Benefits_Backend.Domain.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20200727160151_testthree")]
+    partial class testthree
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -657,9 +659,6 @@ namespace Benefits_Backend.Domain.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("BundleType")
-                        .HasColumnType("text");
-
                     b.Property<int>("Number")
                         .HasColumnType("integer");
 
@@ -676,7 +675,6 @@ namespace Benefits_Backend.Domain.Migrations
                         {
                             Id = 1,
                             Band = "Contractor",
-                            BundleType = "Employee Line",
                             Number = 1,
                             RatePlan = "Flex 65"
                         },
@@ -684,7 +682,6 @@ namespace Benefits_Backend.Domain.Migrations
                         {
                             Id = 2,
                             Band = "G2",
-                            BundleType = "Employee Line",
                             Number = 2,
                             RatePlan = "Red 150"
                         },
@@ -692,7 +689,6 @@ namespace Benefits_Backend.Domain.Migrations
                         {
                             Id = 3,
                             Band = "H1",
-                            BundleType = "Employee Line",
                             Number = 2,
                             RatePlan = "Red 150"
                         },
@@ -700,7 +696,6 @@ namespace Benefits_Backend.Domain.Migrations
                         {
                             Id = 4,
                             Band = "H2",
-                            BundleType = "Employee Line",
                             Number = 2,
                             RatePlan = "Red 150"
                         },
@@ -708,7 +703,6 @@ namespace Benefits_Backend.Domain.Migrations
                         {
                             Id = 5,
                             Band = "G1",
-                            BundleType = "Employee Line",
                             Number = 3,
                             RatePlan = "Red 300"
                         },
@@ -716,7 +710,6 @@ namespace Benefits_Backend.Domain.Migrations
                         {
                             Id = 6,
                             Band = "F",
-                            BundleType = "Employee Line",
                             Number = 4,
                             RatePlan = "Red 500"
                         },
@@ -724,49 +717,8 @@ namespace Benefits_Backend.Domain.Migrations
                         {
                             Id = 7,
                             Band = "E",
-                            BundleType = "Employee Line",
                             Number = 5,
                             RatePlan = "Red 800"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Band = "H",
-                            BundleType = "Employee Data",
-                            Number = 1,
-                            RatePlan = "20 GB"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Band = "G",
-                            BundleType = "Employee Data",
-                            Number = 1,
-                            RatePlan = "20 GB"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Band = "Contractors",
-                            BundleType = "Employee Data",
-                            Number = 1,
-                            RatePlan = "20 GB"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Band = "F",
-                            BundleType = "Employee Data",
-                            Number = 2,
-                            RatePlan = "40 GB"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Band = "E",
-                            BundleType = "Employee Data",
-                            Number = 2,
-                            RatePlan = "40 GB"
                         });
                 });
 

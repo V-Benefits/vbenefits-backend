@@ -18,6 +18,6 @@ namespace Benefits_Backend.Service.IServices
 
         Task CreateSimCardRequest(SIMCardRequest simCardRequest);
 
-        List<string> GetRatePlansForBand(string band);
+        List<string> GetRatePlansForBand(string band, string requestType);
     }
 }

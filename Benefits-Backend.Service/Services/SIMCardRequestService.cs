@@ -61,9 +61,9 @@ namespace Benefits_Backend.Service.Services
            await _unitOfWork.Commit();
         }
 
-        public List<string> GetRatePlansForBand(string band)
+        public List<string> GetRatePlansForBand(string band, string requestType)
         {
-            var ratePlans = _ratePlanRulesRepository.GetRatePlans(band);
+            var ratePlans = _ratePlanRulesRepository.GetRatePlans(band, requestType);
             return ratePlans;
         }
     }

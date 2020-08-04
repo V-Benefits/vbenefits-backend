@@ -11,6 +11,6 @@ namespace Benefits_Backend.Repository.IRepositories
         //Task<string> GetEmployeeRatePlan(string band);
         string GetEmployeeRatePlan(string band);
 
-        List<string> GetRatePlans(string band);
+        List<string> GetRatePlans(string band, string requestType);
     }
 }
