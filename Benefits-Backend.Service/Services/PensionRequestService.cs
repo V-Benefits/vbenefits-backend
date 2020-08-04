@@ -48,7 +48,7 @@ namespace Benefits_Backend.Service.Services
             pensionRequestRepository.Add(pensionRequest);
             // if the record added successfully to the database
             // send email for user 
-            SendConfirmationEmail(pensionRequest.StaffId, pensionRequest.Name, pensionRequest.WithdrawalAmmount);
+            //SendConfirmationEmail(pensionRequest.StaffId, pensionRequest.Name, pensionRequest.WithdrawalAmmount);
             return pensionRequest;
         }
 
