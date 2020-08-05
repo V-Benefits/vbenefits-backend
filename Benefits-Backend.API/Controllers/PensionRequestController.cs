@@ -112,8 +112,14 @@ namespace Benefits_Backend.API.Controllers
         [HttpGet("GetAllPensionRequests")]
         public IActionResult GetAllPensionRequests()
         {
-            var pensionRequestDTO = mapper.Map<PensionRequestDTO>(pensionRequestService.GetAllRequests());
-            return Ok(pensionRequestDTO);
+            var pensionRequestList = pensionRequestService.GetAllRequests();
+            List<PensionRequestDTO> pensionRequestDTOs = new List<PensionRequestDTO>();
+            foreach(var request in pensionRequestList)
+            {
+                pensionRequestDTOs.Add(mapper.Map<PensionRequestDTO>(request));
+
+            }
+            return Ok(pensionRequestDTOs);
         }
 
         [HttpGet("RejectPensionRequest")]
